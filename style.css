@@ -1,27 +1,17 @@
 :root {
-    --bg: #080506;
-    --bg-soft: #100907;
-
-    --card: rgba(24, 13, 10, 0.78);
-
-    --cyan: #ff3b30;
-    --text: #fff4e8;
-    --muted: #b9a79b;
-
-    --border: rgba(255, 72, 45, 0.22);
-    --border-strong: rgba(255, 193, 7, 0.55);
-
-    --yellow: #ffd21c;
-    --red: #ff3028;
-    --orange: #ff8a00;
-
+    --bg: #0b0507;
+    --bg-soft: #130709;
+    --card: rgba(10, 29, 47, 0.78);
+    --cyan: #00c8ff;
+    --text: #e8f2ff;
+    --muted: #91a6bb;
+    --border: rgba(0, 200, 255, 0.20);
+    --border-strong: rgba(0, 200, 255, 0.38);
     --max: 1180px;
 }
 
 
-/* =========================================================
-   RESET
-========================================================= */
+/* ================= RESET ================= */
 
 * {
     box-sizing: border-box;
@@ -38,205 +28,151 @@ html {
 
 body {
     font-family: Inter, "Segoe UI", Arial, sans-serif;
-
-    background: #080506;
-
+    background: var(--bg);
     color: var(--text);
-
     line-height: 1.7;
-
     overflow-x: hidden;
-
-    position: relative;
 }
 
 
-/* =========================================================
-   CYBER NETWORK BACKGROUND
-   RED + YELLOW INFRASTRUCTURE STYLE
-========================================================= */
+/* ================= ADVANCED BACKGROUND (RED / YELLOW IT NETWORK) ================= */
+
+/* Purana canvas network hide (ab sab kuch CSS se chal raha hai) */
+#network-background {
+    display: none !important;
+}
 
 
-/* Main dark red atmospheric background */
+/* Layer 1: red + amber glow, slowly drifting */
 
 body::before {
     content: "";
-
     position: fixed;
-
-    inset: 0;
-
-    z-index: -5;
-
+    inset: -12%;
+    z-index: -4;
     pointer-events: none;
 
     background:
+        radial-gradient(circle at 15% 20%, rgba(255, 45, 60, 0.26), transparent 34%),
+        radial-gradient(circle at 85% 72%, rgba(255, 184, 0, 0.20), transparent 36%),
+        radial-gradient(circle at 55% 45%, rgba(255, 90, 40, 0.08), transparent 45%),
+        linear-gradient(135deg, #0b0507 0%, #120609 55%, #190a08 100%);
 
-        /* yellow infrastructure glow */
-        radial-gradient(
-            circle at 18% 22%,
-            rgba(255, 205, 25, 0.13),
-            transparent 22%
-        ),
-
-        /* red security glow */
-        radial-gradient(
-            circle at 82% 25%,
-            rgba(255, 35, 25, 0.16),
-            transparent 27%
-        ),
-
-        /* orange lower glow */
-        radial-gradient(
-            circle at 55% 88%,
-            rgba(255, 100, 0, 0.10),
-            transparent 30%
-        ),
-
-        /* central red atmosphere */
-        radial-gradient(
-            circle at 50% 45%,
-            rgba(170, 20, 10, 0.10),
-            transparent 45%
-        ),
-
-        linear-gradient(
-            135deg,
-            #090506 0%,
-            #100706 35%,
-            #080506 65%,
-            #120805 100%
-        );
-
-    animation: backgroundPulse 10s ease-in-out infinite alternate;
+    animation: glowDrift 16s ease-in-out infinite alternate;
+    will-change: transform;
 }
 
 
-/* =========================================================
-   NETWORK GRID
-========================================================= */
+/* Layer 2 (far): grid + slow network, moves down-right */
+
+html::before {
+    content: "";
+    position: fixed;
+    inset: -640px;
+    z-index: -3;
+    pointer-events: none;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='640' height='640' viewBox='0 0 640 640'%3E%3Cdefs%3E%3Cg id='t'%3E%3Cpath d='M0 0V640M0 0H640' stroke='%23ffc23d' stroke-opacity='0.07' stroke-width='1' fill='none'/%3E%3Cpath d='M64 0V640M0 64H640' stroke='%23ffc23d' stroke-opacity='0.07' stroke-width='1' fill='none'/%3E%3Cpath d='M128 0V640M0 128H640' stroke='%23ffc23d' stroke-opacity='0.07' stroke-width='1' fill='none'/%3E%3Cpath d='M192 0V640M0 192H640' stroke='%23ffc23d' stroke-opacity='0.07' stroke-width='1' fill='none'/%3E%3Cpath d='M256 0V640M0 256H640' stroke='%23ffc23d' stroke-opacity='0.07' stroke-width='1' fill='none'/%3E%3Cpath d='M320 0V640M0 320H640' stroke='%23ffc23d' stroke-opacity='0.07' stroke-width='1' fill='none'/%3E%3Cpath d='M384 0V640M0 384H640' stroke='%23ffc23d' stroke-opacity='0.07' stroke-width='1' fill='none'/%3E%3Cpath d='M448 0V640M0 448H640' stroke='%23ffc23d' stroke-opacity='0.07' stroke-width='1' fill='none'/%3E%3Cpath d='M512 0V640M0 512H640' stroke='%23ffc23d' stroke-opacity='0.07' stroke-width='1' fill='none'/%3E%3Cpath d='M576 0V640M0 576H640' stroke='%23ffc23d' stroke-opacity='0.07' stroke-width='1' fill='none'/%3E%3Cline x1='207.3' y1='96.5' x2='44.7' y2='58.1' stroke='%23ff3b4a' stroke-opacity='0.14' stroke-width='4.2'/%3E%3Cline x1='207.3' y1='96.5' x2='44.7' y2='58.1' stroke='%23ff3b4a' stroke-opacity='0.45' stroke-width='1.3'/%3E%3Cline x1='207.3' y1='96.5' x2='343.0' y2='234.0' stroke='%23ffc23d' stroke-opacity='0.14' stroke-width='4.2'/%3E%3Cline x1='207.3' y1='96.5' x2='343.0' y2='234.0' stroke='%23ffc23d' stroke-opacity='0.45' stroke-width='1.3'/%3E%3Cline x1='416.6' y1='46.4' x2='549.4' y2='185.3' stroke='%23ff3b4a' stroke-opacity='0.14' stroke-width='4.2'/%3E%3Cline x1='416.6' y1='46.4' x2='549.4' y2='185.3' stroke='%23ff3b4a' stroke-opacity='0.45' stroke-width='1.3'/%3E%3Cline x1='416.6' y1='46.4' x2='343.0' y2='234.0' stroke='%23ffc23d' stroke-opacity='0.14' stroke-width='4.2'/%3E%3Cline x1='416.6' y1='46.4' x2='343.0' y2='234.0' stroke='%23ffc23d' stroke-opacity='0.45' stroke-width='1.3'/%3E%3Cline x1='343.0' y1='234.0' x2='201.1' y2='374.8' stroke='%23ff3b4a' stroke-opacity='0.14' stroke-width='4.2'/%3E%3Cline x1='343.0' y1='234.0' x2='201.1' y2='374.8' stroke='%23ff3b4a' stroke-opacity='0.45' stroke-width='1.3'/%3E%3Cline x1='37.1' y1='324.8' x2='201.1' y2='374.8' stroke='%23ffc23d' stroke-opacity='0.14' stroke-width='4.2'/%3E%3Cline x1='37.1' y1='324.8' x2='201.1' y2='374.8' stroke='%23ffc23d' stroke-opacity='0.45' stroke-width='1.3'/%3E%3Cline x1='37.1' y1='324.8' x2='-90.6' y2='185.3' stroke='%23ff3b4a' stroke-opacity='0.14' stroke-width='4.2'/%3E%3Cline x1='37.1' y1='324.8' x2='-90.6' y2='185.3' stroke='%23ff3b4a' stroke-opacity='0.45' stroke-width='1.3'/%3E%3Cline x1='44.7' y1='58.1' x2='-90.6' y2='185.3' stroke='%23ffc23d' stroke-opacity='0.14' stroke-width='4.2'/%3E%3Cline x1='44.7' y1='58.1' x2='-90.6' y2='185.3' stroke='%23ffc23d' stroke-opacity='0.45' stroke-width='1.3'/%3E%3Cline x1='271.7' y1='529.2' x2='201.1' y2='374.8' stroke='%23ff3b4a' stroke-opacity='0.14' stroke-width='4.2'/%3E%3Cline x1='271.7' y1='529.2' x2='201.1' y2='374.8' stroke='%23ff3b4a' stroke-opacity='0.45' stroke-width='1.3'/%3E%3Cline x1='271.7' y1='529.2' x2='416.6' y2='686.4' stroke='%23ffc23d' stroke-opacity='0.14' stroke-width='4.2'/%3E%3Cline x1='271.7' y1='529.2' x2='416.6' y2='686.4' stroke='%23ffc23d' stroke-opacity='0.45' stroke-width='1.3'/%3E%3Cline x1='508.4' y1='447.4' x2='677.1' y2='324.8' stroke='%23ff3b4a' stroke-opacity='0.14' stroke-width='4.2'/%3E%3Cline x1='508.4' y1='447.4' x2='677.1' y2='324.8' stroke='%23ff3b4a' stroke-opacity='0.45' stroke-width='1.3'/%3E%3Cline x1='508.4' y1='447.4' x2='271.7' y2='529.2' stroke='%23ffc23d' stroke-opacity='0.14' stroke-width='4.2'/%3E%3Cline x1='508.4' y1='447.4' x2='271.7' y2='529.2' stroke='%23ffc23d' stroke-opacity='0.45' stroke-width='1.3'/%3E%3Ccircle cx='207.3' cy='96.5' r='10.9' fill='%23ffc23d' fill-opacity='0.16'/%3E%3Ccircle cx='207.3' cy='96.5' r='6.1' fill='none' stroke='%23ff3b4a' stroke-opacity='0.85' stroke-width='1.3'/%3E%3Ccircle cx='207.3' cy='96.5' r='3.2' fill='%23ffc23d'/%3E%3Ccircle cx='416.6' cy='46.4' r='10.9' fill='%23ff3b4a' fill-opacity='0.16'/%3E%3Ccircle cx='416.6' cy='46.4' r='6.1' fill='none' stroke='%23ffc23d' stroke-opacity='0.85' stroke-width='1.3'/%3E%3Ccircle cx='416.6' cy='46.4' r='3.2' fill='%23ff3b4a'/%3E%3Ccircle cx='343.0' cy='234.0' r='10.9' fill='%23ffc23d' fill-opacity='0.16'/%3E%3Ccircle cx='343.0' cy='234.0' r='6.1' fill='none' stroke='%23ff3b4a' stroke-opacity='0.85' stroke-width='1.3'/%3E%3Ccircle cx='343.0' cy='234.0' r='3.2' fill='%23ffc23d'/%3E%3Ccircle cx='37.1' cy='324.8' r='10.9' fill='%23ff3b4a' fill-opacity='0.16'/%3E%3Ccircle cx='37.1' cy='324.8' r='6.1' fill='none' stroke='%23ffc23d' stroke-opacity='0.85' stroke-width='1.3'/%3E%3Ccircle cx='37.1' cy='324.8' r='3.2' fill='%23ff3b4a'/%3E%3Ccircle cx='44.7' cy='58.1' r='10.9' fill='%23ffc23d' fill-opacity='0.16'/%3E%3Ccircle cx='44.7' cy='58.1' r='6.1' fill='none' stroke='%23ff3b4a' stroke-opacity='0.85' stroke-width='1.3'/%3E%3Ccircle cx='44.7' cy='58.1' r='3.2' fill='%23ffc23d'/%3E%3Ccircle cx='271.7' cy='529.2' r='10.9' fill='%23ff3b4a' fill-opacity='0.16'/%3E%3Ccircle cx='271.7' cy='529.2' r='6.1' fill='none' stroke='%23ffc23d' stroke-opacity='0.85' stroke-width='1.3'/%3E%3Ccircle cx='271.7' cy='529.2' r='3.2' fill='%23ff3b4a'/%3E%3Ccircle cx='549.4' cy='185.3' r='10.9' fill='%23ffc23d' fill-opacity='0.16'/%3E%3Ccircle cx='549.4' cy='185.3' r='6.1' fill='none' stroke='%23ff3b4a' stroke-opacity='0.85' stroke-width='1.3'/%3E%3Ccircle cx='549.4' cy='185.3' r='3.2' fill='%23ffc23d'/%3E%3Ccircle cx='201.1' cy='374.8' r='10.9' fill='%23ff3b4a' fill-opacity='0.16'/%3E%3Ccircle cx='201.1' cy='374.8' r='6.1' fill='none' stroke='%23ffc23d' stroke-opacity='0.85' stroke-width='1.3'/%3E%3Ccircle cx='201.1' cy='374.8' r='3.2' fill='%23ff3b4a'/%3E%3Ccircle cx='508.4' cy='447.4' r='10.9' fill='%23ffc23d' fill-opacity='0.16'/%3E%3Ccircle cx='508.4' cy='447.4' r='6.1' fill='none' stroke='%23ff3b4a' stroke-opacity='0.85' stroke-width='1.3'/%3E%3Ccircle cx='508.4' cy='447.4' r='3.2' fill='%23ffc23d'/%3E%3C/g%3E%3C/defs%3E%3Cuse href='%23t' xlink:href='%23t' x='-640' y='-640'/%3E%3Cuse href='%23t' xlink:href='%23t' x='-640' y='0'/%3E%3Cuse href='%23t' xlink:href='%23t' x='-640' y='640'/%3E%3Cuse href='%23t' xlink:href='%23t' x='0' y='-640'/%3E%3Cuse href='%23t' xlink:href='%23t' x='0' y='0'/%3E%3Cuse href='%23t' xlink:href='%23t' x='0' y='640'/%3E%3Cuse href='%23t' xlink:href='%23t' x='640' y='-640'/%3E%3Cuse href='%23t' xlink:href='%23t' x='640' y='0'/%3E%3Cuse href='%23t' xlink:href='%23t' x='640' y='640'/%3E%3C/svg%3E");
+    background-size: 640px 640px;
+    background-repeat: repeat;
+
+    animation:
+        driftFar 60s linear infinite,
+        pulseFar 7s ease-in-out infinite alternate;
+    will-change: transform, opacity;
+}
+
+
+/* Layer 3 (near): bigger glowing nodes, moves up-left (opposite direction) */
+
+html::after {
+    content: "";
+    position: fixed;
+    inset: -480px;
+    z-index: -2;
+    pointer-events: none;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='480' height='480' viewBox='0 0 480 480'%3E%3Cdefs%3E%3Cg id='t'%3E%3Cline x1='79.2' y1='331.1' x2='1.5' y2='178.1' stroke='%23ff3b4a' stroke-opacity='0.14' stroke-width='5.8'/%3E%3Cline x1='79.2' y1='331.1' x2='1.5' y2='178.1' stroke='%23ff3b4a' stroke-opacity='0.7' stroke-width='1.8'/%3E%3Cline x1='79.2' y1='331.1' x2='-92.2' y2='246.0' stroke='%23ffc23d' stroke-opacity='0.14' stroke-width='5.8'/%3E%3Cline x1='79.2' y1='331.1' x2='-92.2' y2='246.0' stroke='%23ffc23d' stroke-opacity='0.7' stroke-width='1.8'/%3E%3Cline x1='304.8' y1='230.0' x2='387.8' y2='246.0' stroke='%23ff3b4a' stroke-opacity='0.14' stroke-width='5.8'/%3E%3Cline x1='304.8' y1='230.0' x2='387.8' y2='246.0' stroke='%23ff3b4a' stroke-opacity='0.7' stroke-width='1.8'/%3E%3Cline x1='304.8' y1='230.0' x2='242.4' y2='113.3' stroke='%23ffc23d' stroke-opacity='0.14' stroke-width='5.8'/%3E%3Cline x1='304.8' y1='230.0' x2='242.4' y2='113.3' stroke='%23ffc23d' stroke-opacity='0.7' stroke-width='1.8'/%3E%3Cline x1='387.8' y1='246.0' x2='481.5' y2='178.1' stroke='%23ff3b4a' stroke-opacity='0.14' stroke-width='5.8'/%3E%3Cline x1='387.8' y1='246.0' x2='481.5' y2='178.1' stroke='%23ff3b4a' stroke-opacity='0.7' stroke-width='1.8'/%3E%3Cline x1='242.4' y1='113.3' x2='281.0' y2='33.2' stroke='%23ffc23d' stroke-opacity='0.14' stroke-width='5.8'/%3E%3Cline x1='242.4' y1='113.3' x2='281.0' y2='33.2' stroke='%23ffc23d' stroke-opacity='0.7' stroke-width='1.8'/%3E%3Cline x1='281.0' y1='33.2' x2='304.8' y2='230.0' stroke='%23ff3b4a' stroke-opacity='0.14' stroke-width='5.8'/%3E%3Cline x1='281.0' y1='33.2' x2='304.8' y2='230.0' stroke='%23ff3b4a' stroke-opacity='0.7' stroke-width='1.8'/%3E%3Ccircle cx='79.2' cy='331.1' r='14.3' fill='%23ffc23d' fill-opacity='0.16'/%3E%3Ccircle cx='79.2' cy='331.1' r='8.0' fill='none' stroke='%23ff3b4a' stroke-opacity='0.85' stroke-width='1.3'/%3E%3Ccircle cx='79.2' cy='331.1' r='4.2' fill='%23ffc23d'/%3E%3Ccircle cx='304.8' cy='230.0' r='14.3' fill='%23ff3b4a' fill-opacity='0.16'/%3E%3Ccircle cx='304.8' cy='230.0' r='8.0' fill='none' stroke='%23ffc23d' stroke-opacity='0.85' stroke-width='1.3'/%3E%3Ccircle cx='304.8' cy='230.0' r='4.2' fill='%23ff3b4a'/%3E%3Ccircle cx='387.8' cy='246.0' r='14.3' fill='%23ffc23d' fill-opacity='0.16'/%3E%3Ccircle cx='387.8' cy='246.0' r='8.0' fill='none' stroke='%23ff3b4a' stroke-opacity='0.85' stroke-width='1.3'/%3E%3Ccircle cx='387.8' cy='246.0' r='4.2' fill='%23ffc23d'/%3E%3Ccircle cx='242.4' cy='113.3' r='14.3' fill='%23ff3b4a' fill-opacity='0.16'/%3E%3Ccircle cx='242.4' cy='113.3' r='8.0' fill='none' stroke='%23ffc23d' stroke-opacity='0.85' stroke-width='1.3'/%3E%3Ccircle cx='242.4' cy='113.3' r='4.2' fill='%23ff3b4a'/%3E%3Ccircle cx='1.5' cy='178.1' r='14.3' fill='%23ffc23d' fill-opacity='0.16'/%3E%3Ccircle cx='1.5' cy='178.1' r='8.0' fill='none' stroke='%23ff3b4a' stroke-opacity='0.85' stroke-width='1.3'/%3E%3Ccircle cx='1.5' cy='178.1' r='4.2' fill='%23ffc23d'/%3E%3Ccircle cx='281.0' cy='33.2' r='14.3' fill='%23ff3b4a' fill-opacity='0.16'/%3E%3Ccircle cx='281.0' cy='33.2' r='8.0' fill='none' stroke='%23ffc23d' stroke-opacity='0.85' stroke-width='1.3'/%3E%3Ccircle cx='281.0' cy='33.2' r='4.2' fill='%23ff3b4a'/%3E%3C/g%3E%3C/defs%3E%3Cuse href='%23t' xlink:href='%23t' x='-480' y='-480'/%3E%3Cuse href='%23t' xlink:href='%23t' x='-480' y='0'/%3E%3Cuse href='%23t' xlink:href='%23t' x='-480' y='480'/%3E%3Cuse href='%23t' xlink:href='%23t' x='0' y='-480'/%3E%3Cuse href='%23t' xlink:href='%23t' x='0' y='0'/%3E%3Cuse href='%23t' xlink:href='%23t' x='0' y='480'/%3E%3Cuse href='%23t' xlink:href='%23t' x='480' y='-480'/%3E%3Cuse href='%23t' xlink:href='%23t' x='480' y='0'/%3E%3Cuse href='%23t' xlink:href='%23t' x='480' y='480'/%3E%3C/svg%3E");
+    background-size: 480px 480px;
+    background-repeat: repeat;
+
+    animation:
+        driftNear 34s linear infinite,
+        pulseNear 4.5s ease-in-out infinite alternate;
+    will-change: transform, opacity;
+}
+
+
+/* Layer 4: light sweep (data scan) passing across the screen */
 
 body::after {
     content: "";
-
     position: fixed;
-
-    inset: -10%;
-
-    z-index: -4;
-
+    top: 0;
+    bottom: 0;
+    left: -45%;
+    width: 45%;
+    z-index: -1;
     pointer-events: none;
 
-    opacity: 0.42;
+    background: linear-gradient(
+        100deg,
+        transparent 0%,
+        rgba(255, 184, 0, 0.10) 45%,
+        rgba(255, 60, 70, 0.10) 55%,
+        transparent 100%
+    );
 
-    background-image:
-
-        /* horizontal network lines */
-        linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(255, 60, 35, 0.12) 48%,
-            transparent 100%
-        ),
-
-        /* vertical network lines */
-        linear-gradient(
-            0deg,
-            transparent 0%,
-            rgba(255, 207, 30, 0.10) 48%,
-            transparent 100%
-        ),
-
-        /* technical grid */
-        linear-gradient(
-            rgba(255, 65, 35, 0.055) 1px,
-            transparent 1px
-        ),
-
-        linear-gradient(
-            90deg,
-            rgba(255, 190, 20, 0.055) 1px,
-            transparent 1px
-        );
-
-    background-size:
-        260px 260px,
-        260px 260px,
-        70px 70px,
-        70px 70px;
-
-    transform: perspective(700px) rotateX(0deg);
-
-    animation:
-        networkGridMove 18s linear infinite;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            transparent 0%,
-            black 15%,
-            black 85%,
-            transparent 100%
-        );
+    transform: skewX(-18deg);
+    animation: scanSweep 10s linear infinite;
+    will-change: transform;
 }
 
 
-/* =========================================================
-   EXISTING NETWORK CANVAS
-========================================================= */
+/* ----- Background animations ----- */
 
-#network-background {
-    position: fixed;
+@keyframes glowDrift {
+    from { transform: translate3d(-2%, -1%, 0) scale(1); }
+    to   { transform: translate3d(2%, 2%, 0) scale(1.08); }
+}
 
-    inset: 0;
+@keyframes driftFar {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(640px, 640px, 0); }
+}
 
-    width: 100%;
-    height: 100%;
+@keyframes driftNear {
+    from { transform: translate3d(480px, 480px, 0); }
+    to   { transform: translate3d(0, 0, 0); }
+}
 
-    z-index: -2;
+@keyframes pulseFar {
+    from { opacity: 0.65; }
+    to   { opacity: 1; }
+}
 
-    pointer-events: none;
+@keyframes pulseNear {
+    from { opacity: 0.70; }
+    to   { opacity: 1; }
+}
 
-    opacity: 0.75;
+@keyframes scanSweep {
+    from { transform: skewX(-18deg) translateX(0); }
+    to   { transform: skewX(-18deg) translateX(330%); }
+}
 
-    mix-blend-mode: screen;
-
-    filter:
-        drop-shadow(
-            0 0 5px
-            rgba(255, 55, 30, 0.35)
-        );
-
-    animation:
-        networkCanvasGlow 5s ease-in-out infinite alternate;
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    body::after,
+    html::before,
+    html::after {
+        animation: none;
+    }
 }
 
 
-/* =========================================================
-   EXTRA MOVING NETWORK LIGHTS
-========================================================= */
 
-body {
-    isolation: isolate;
-}
-
-
-body > * {
-    position: relative;
-    z-index: 1;
-}
-
-
-/* Floating infrastructure light */
-
-body::marker {
-    color: transparent;
-}
-
-
-/* =========================================================
-   GENERAL
-========================================================= */
+/* ================= GENERAL ================= */
 
 .container {
     width: min(
@@ -250,49 +186,31 @@ body::marker {
 
 .section {
     position: relative;
-
     padding: 105px 0;
 }
 
 
 .dark-section {
-    background:
-        linear-gradient(
-            180deg,
-            rgba(10, 3, 3, 0.20),
-            rgba(25, 5, 3, 0.35)
-        );
+    background: rgba(2, 12, 24, 0.30);
 }
 
 
-/* =========================================================
-   NAVBAR
-========================================================= */
+/* ================= NAVBAR ================= */
 
 .navbar {
     position: sticky;
-
     top: 0;
 
     z-index: 1000;
 
     background:
-        rgba(10, 5, 5, 0.91);
+        rgba(4, 14, 26, 0.92);
 
     backdrop-filter: blur(18px);
-
     -webkit-backdrop-filter: blur(18px);
 
     border-bottom:
-        1px solid
-        rgba(255, 65, 35, 0.25);
-
-    box-shadow:
-        0 1px 0
-        rgba(255, 190, 20, 0.04),
-
-        0 8px 30px
-        rgba(0, 0, 0, 0.20);
+        1px solid var(--border);
 }
 
 
@@ -300,9 +218,7 @@ body::marker {
     min-height: 78px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     gap: 30px;
@@ -311,7 +227,6 @@ body::marker {
 
 .logo {
     display: flex;
-
     align-items: center;
 
     flex-shrink: 0;
@@ -325,18 +240,11 @@ body::marker {
     object-fit: contain;
 
     display: block;
-
-    filter:
-        drop-shadow(
-            0 0 8px
-            rgba(255, 60, 30, 0.30)
-        );
 }
 
 
 .nav-links {
     display: flex;
-
     align-items: center;
 
     gap: 26px;
@@ -344,26 +252,20 @@ body::marker {
 
 
 .nav-links a {
-    color: #cbbab0;
+    color: #b7c6d6;
 
     text-decoration: none;
 
     font-size: 14px;
-
     font-weight: 600;
 
     transition:
-        color 0.25s ease,
-        text-shadow 0.25s ease;
+        color 0.25s ease;
 }
 
 
 .nav-links a:hover {
-    color: var(--yellow);
-
-    text-shadow:
-        0 0 12px
-        rgba(255, 200, 20, 0.45);
+    color: var(--cyan);
 }
 
 
@@ -371,28 +273,21 @@ body::marker {
     padding: 10px 18px;
 
     border:
-        1px solid
-        var(--yellow);
+        1px solid var(--cyan);
 
     border-radius: 7px;
 
-    color: var(--yellow) !important;
-
-    box-shadow:
-        inset 0 0 12px
-        rgba(255, 190, 20, 0.04);
+    color: var(--cyan) !important;
 }
 
 
 .nav-resume:hover {
     background:
-        rgba(255, 190, 20, 0.08);
+        rgba(0, 200, 255, 0.10);
 }
 
 
-/* =========================================================
-   MOBILE MENU
-========================================================= */
+/* Mobile menu button */
 
 .menu-toggle {
     display: none;
@@ -401,13 +296,12 @@ body::marker {
     height: 42px;
 
     border:
-        1px solid
-        rgba(255, 80, 45, 0.45);
+        1px solid var(--border-strong);
 
     border-radius: 8px;
 
     background:
-        rgba(255, 55, 30, 0.05);
+        rgba(0, 200, 255, 0.04);
 
     cursor: pointer;
 
@@ -422,24 +316,13 @@ body::marker {
 
     margin: 5px 0;
 
-    background:
-        linear-gradient(
-            90deg,
-            var(--red),
-            var(--yellow)
-        );
+    background: var(--cyan);
 
     border-radius: 2px;
-
-    box-shadow:
-        0 0 8px
-        rgba(255, 60, 30, 0.45);
 }
 
 
-/* =========================================================
-   HERO
-========================================================= */
+/* ================= HERO ================= */
 
 .hero {
     min-height:
@@ -449,9 +332,7 @@ body::marker {
         90px 0 45px;
 
     display: flex;
-
     flex-direction: column;
-
     justify-content: center;
 }
 
@@ -468,9 +349,7 @@ body::marker {
 }
 
 
-/* =========================================================
-   PROFILE
-========================================================= */
+/* Profile */
 
 .hero-photo-wrap {
     position: relative;
@@ -490,24 +369,16 @@ body::marker {
 
     border:
         1px solid
-        rgba(255, 65, 35, 0.60);
+        rgba(0, 200, 255, 0.55);
 
     border-radius: 28px;
 
     background:
-        linear-gradient(
-            135deg,
-            rgba(255, 55, 30, 0.12),
-            rgba(255, 200, 20, 0.07)
-        );
+        rgba(0, 150, 205, 0.12);
 
     box-shadow:
-
         0 0 35px
-        rgba(255, 40, 25, 0.13),
-
-        0 0 80px
-        rgba(255, 170, 0, 0.04);
+        rgba(0, 180, 255, 0.12);
 }
 
 
@@ -523,15 +394,12 @@ body::marker {
 }
 
 
-/* =========================================================
-   SECURITY BADGE
-========================================================= */
+/* CEH badge */
 
 .hero-badge {
     position: absolute;
 
     right: -22px;
-
     bottom: 12px;
 
     width: 94px;
@@ -541,20 +409,14 @@ body::marker {
 
     border-radius: 50%;
 
-    background:
-        #100706;
+    background: #071522;
 
     border:
-        1px solid
-        var(--yellow);
+        1px solid var(--cyan);
 
     box-shadow:
-
-        0 0 18px
-        rgba(255, 65, 30, 0.30),
-
-        0 0 35px
-        rgba(255, 190, 20, 0.10);
+        0 0 24px
+        rgba(0, 190, 255, 0.22);
 }
 
 
@@ -570,9 +432,7 @@ body::marker {
 }
 
 
-/* =========================================================
-   HERO CONTENT
-========================================================= */
+/* Hero content */
 
 .hero-content {
     max-width: 720px;
@@ -580,18 +440,13 @@ body::marker {
 
 
 .hero-label {
-    color:
-        var(--yellow);
+    color: var(--cyan);
 
     letter-spacing: 2px;
 
     font-size: 12px;
 
     font-weight: 800;
-
-    text-shadow:
-        0 0 10px
-        rgba(255, 200, 20, 0.25);
 }
 
 
@@ -608,12 +463,7 @@ body::marker {
 
 
 .hero h1 span {
-    color:
-        var(--red);
-
-    text-shadow:
-        0 0 18px
-        rgba(255, 45, 30, 0.25);
+    color: var(--cyan);
 }
 
 
@@ -623,8 +473,7 @@ body::marker {
     font-size:
         clamp(20px, 2vw, 28px);
 
-    color:
-        #e9d9cf;
+    color: #d3e0ee;
 
     font-weight: 650;
 }
@@ -635,16 +484,13 @@ body::marker {
 
     max-width: 680px;
 
-    color:
-        var(--muted);
+    color: var(--muted);
 
     font-size: 17px;
 }
 
 
-/* =========================================================
-   BUTTONS
-========================================================= */
+/* Buttons */
 
 .hero-buttons {
     display: flex;
@@ -659,7 +505,6 @@ body::marker {
     display: inline-flex;
 
     align-items: center;
-
     justify-content: center;
 
     min-height: 46px;
@@ -679,19 +524,9 @@ body::marker {
 
 
 .btn-primary {
-    background:
-        linear-gradient(
-            135deg,
-            #ff3328,
-            #ff7a00
-        );
+    background: var(--cyan);
 
-    color:
-        #160504;
-
-    box-shadow:
-        0 0 0
-        rgba(255, 50, 30, 0);
+    color: #03111c;
 }
 
 
@@ -701,33 +536,26 @@ body::marker {
 
     box-shadow:
         0 10px 28px
-        rgba(255, 55, 30, 0.22);
+        rgba(0, 200, 255, 0.18);
 }
 
 
 .btn-outline {
-    color:
-        var(--yellow);
+    color: var(--cyan);
 
     border:
         1px solid
-        rgba(255, 195, 20, 0.65);
+        rgba(0, 200, 255, 0.65);
 }
 
 
 .btn-outline:hover {
     background:
-        rgba(255, 190, 20, 0.08);
-
-    box-shadow:
-        0 0 20px
-        rgba(255, 190, 20, 0.08);
+        rgba(0, 200, 255, 0.08);
 }
 
 
-/* =========================================================
-   HERO STATS
-========================================================= */
+/* Hero stats */
 
 .hero-stats {
     margin-top: 58px;
@@ -735,8 +563,7 @@ body::marker {
     padding-top: 22px;
 
     border-top:
-        1px solid
-        var(--border);
+        1px solid var(--border);
 
     display: grid;
 
@@ -766,16 +593,13 @@ body::marker {
 
 
 .hero-stats span {
-    color:
-        var(--muted);
+    color: var(--muted);
 
     font-size: 12px;
 }
 
 
-/* =========================================================
-   SECTION HEADINGS
-========================================================= */
+/* ================= SECTION HEADINGS ================= */
 
 .section-heading {
     display: flex;
@@ -789,8 +613,7 @@ body::marker {
 
 
 .section-heading span {
-    color:
-        var(--yellow);
+    color: var(--cyan);
 
     font-size: 13px;
 
@@ -810,9 +633,7 @@ body::marker {
 }
 
 
-/* =========================================================
-   ABOUT
-========================================================= */
+/* ================= ABOUT ================= */
 
 .about-content {
     display: grid;
@@ -827,8 +648,7 @@ body::marker {
 
 
 .about-text {
-    color:
-        var(--muted);
+    color: var(--muted);
 
     font-size: 17px;
 }
@@ -846,1084 +666,6 @@ body::marker {
 }
 
 
-/* =========================================================
-   CARDS
-========================================================= */
-
 .highlight-box,
 .skill-card,
-.timeline-content,
-.cert-card,
-.education-card {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(27, 12, 10, 0.82),
-            rgba(16, 10, 9, 0.78)
-        );
-
-    border:
-        1px solid
-        var(--border);
-
-    box-shadow:
-
-        inset 0 1px 0
-        rgba(255,255,255,0.025),
-
-        0 8px 35px
-        rgba(0,0,0,0.12);
-
-    backdrop-filter:
-        blur(8px);
-
-    -webkit-backdrop-filter:
-        blur(8px);
-}
-
-
-.highlight-box {
-    padding: 22px;
-
-    border-radius: 14px;
-}
-
-
-.highlight-number,
-.skill-number {
-    color:
-        var(--yellow);
-
-    font-size: 12px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
-}
-
-
-.highlight-box h3 {
-    margin-top: 8px;
-
-    font-size: 18px;
-}
-
-
-.highlight-box p {
-    margin-top: 4px;
-
-    color:
-        var(--muted);
-
-    font-size: 14px;
-}
-
-
-/* =========================================================
-   SKILLS
-========================================================= */
-
-.skills-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 16px;
-}
-
-
-.skill-card {
-    padding: 26px;
-
-    border-radius: 15px;
-
-    min-height: 190px;
-
-    transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-
-.skill-card:hover,
-.cert-card:hover,
-.education-card:hover {
-    transform:
-        translateY(-3px);
-
-    border-color:
-        var(--border-strong);
-
-    box-shadow:
-        0 12px 35px
-        rgba(255, 50, 30, 0.08);
-}
-
-
-.skill-card h3 {
-    margin-top: 14px;
-
-    font-size: 20px;
-}
-
-
-.skill-card p {
-    margin-top: 8px;
-
-    color:
-        var(--muted);
-
-    font-size: 14px;
-}
-
-
-/* =========================================================
-   EXPERIENCE
-========================================================= */
-
-.timeline {
-    position: relative;
-
-    max-width: 950px;
-
-    margin: 0 auto;
-}
-
-
-.timeline::before {
-    content: "";
-
-    position: absolute;
-
-    left: 10px;
-
-    top: 10px;
-
-    bottom: 10px;
-
-    width: 1px;
-
-    background:
-        linear-gradient(
-            var(--red),
-            var(--yellow),
-            rgba(255, 60, 30, 0.08)
-        );
-
-    box-shadow:
-        0 0 10px
-        rgba(255, 60, 30, 0.20);
-}
-
-
-.timeline-item {
-    position: relative;
-
-    padding-left: 48px;
-
-    margin-bottom: 24px;
-}
-
-
-.timeline-dot {
-    position: absolute;
-
-    left: 4px;
-
-    top: 30px;
-
-    width: 13px;
-    height: 13px;
-
-    border:
-        2px solid
-        var(--yellow);
-
-    border-radius: 50%;
-
-    background:
-        var(--bg);
-
-    box-shadow:
-        0 0 12px
-        rgba(255, 190, 20, 0.35);
-
-    animation:
-        nodePulse 2.5s ease-in-out infinite;
-}
-
-
-.timeline-content {
-    padding: 28px 30px;
-
-    border-radius: 16px;
-}
-
-
-.timeline-date {
-    color:
-        var(--yellow);
-
-    font-size: 12px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
-}
-
-
-.timeline-content h3 {
-    margin-top: 5px;
-
-    font-size: 23px;
-}
-
-
-.timeline-content h4 {
-    margin-top: 2px;
-
-    color:
-        #d8c8be;
-
-    font-size: 16px;
-}
-
-
-.client {
-    margin-top: 4px;
-
-    color:
-        #967f72;
-
-    font-size: 13px;
-}
-
-
-.timeline-content ul {
-    margin:
-        16px 0 0 18px;
-}
-
-
-.timeline-content li {
-    margin: 6px 0;
-
-    color:
-        var(--muted);
-
-    font-size: 14px;
-}
-
-
-/* =========================================================
-   CERTIFICATIONS
-========================================================= */
-
-.cert-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 16px;
-}
-
-
-.cert-card {
-    display: grid;
-
-    grid-template-columns:
-        90px 1fr;
-
-    gap: 20px;
-
-    align-items: center;
-
-    padding: 28px 22px;
-
-    min-height: 170px;
-
-    border-radius: 15px;
-
-    transition:
-        transform 0.25s ease,
-        border-color 0.25s ease;
-}
-
-
-.cert-icon {
-    width: 72px;
-    height: 72px;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius: 12px;
-
-    background:
-        rgba(255, 70, 35, 0.06);
-
-    display: grid;
-
-    place-items: center;
-
-    color:
-        var(--yellow);
-
-    font-size: 27px;
-
-    font-weight: 800;
-}
-
-
-.cert-icon img {
-    width: 100%;
-    height: 100%;
-
-    padding: 7px;
-
-    object-fit: contain;
-
-    border-radius: 12px;
-}
-
-
-.cert-card h3 {
-    margin-top: 6px;
-
-    font-size: 18px;
-}
-
-
-.cert-card p {
-    margin-top: 3px;
-
-    color:
-        var(--muted);
-
-    font-size: 13px;
-}
-
-
-.cert-date {
-    display: block;
-
-    margin-top: 4px;
-
-    color:
-        #806d62;
-
-    font-size: 12px;
-}
-
-
-.cert-label {
-    color:
-        var(--yellow);
-
-    font-size: 11px;
-
-    font-weight: 800;
-
-    letter-spacing: 2px;
-}
-
-
-/* =========================================================
-   EDUCATION
-========================================================= */
-
-.education-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 16px;
-}
-
-
-.education-card {
-    padding: 30px;
-
-    border-radius: 15px;
-}
-
-
-.education-year {
-    color:
-        var(--yellow);
-
-    font-size: 12px;
-
-    font-weight: 800;
-}
-
-
-.education-card h3 {
-    margin-top: 12px;
-
-    font-size: 19px;
-}
-
-
-.education-card p {
-    margin-top: 5px;
-
-    color:
-        var(--muted);
-
-    font-size: 14px;
-}
-
-
-/* =========================================================
-   CONTACT
-========================================================= */
-
-.contact-content {
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 70px;
-
-    align-items: start;
-}
-
-
-.contact-intro h3 {
-    font-size:
-        clamp(25px, 3vw, 38px);
-
-    line-height: 1.3;
-}
-
-
-.contact-intro p {
-    margin-top: 16px;
-
-    color:
-        var(--muted);
-
-    max-width: 600px;
-}
-
-
-.contact-links {
-    display: grid;
-
-    gap: 14px;
-}
-
-
-.contact-links a {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 2px;
-
-    padding: 14px 0;
-
-    text-decoration: none;
-
-    border-bottom:
-        1px solid
-        rgba(255, 60, 30, 0.12);
-}
-
-
-.contact-links span {
-    color:
-        var(--yellow);
-
-    font-size: 12px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
-
-    text-transform: uppercase;
-}
-
-
-.contact-links strong {
-    color:
-        #d8c9c0;
-
-    font-size: 15px;
-
-    font-weight: 600;
-
-    overflow-wrap: anywhere;
-}
-
-
-.contact-links a:hover strong {
-    color:
-        #ffffff;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-    border-top:
-        1px solid
-        var(--border);
-
-    background:
-        rgba(8, 3, 3, 0.72);
-}
-
-
-.footer-content {
-    min-height: 72px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 20px;
-
-    color:
-        #806f64;
-
-    font-size: 12px;
-}
-
-
-/* =========================================================
-   ANIMATIONS
-========================================================= */
-
-
-/* Atmospheric movement */
-
-@keyframes backgroundPulse {
-
-    0% {
-        filter:
-            brightness(0.92)
-            saturate(0.95);
-    }
-
-    50% {
-        filter:
-            brightness(1.02)
-            saturate(1.10);
-    }
-
-    100% {
-        filter:
-            brightness(0.95)
-            saturate(1.02);
-    }
-}
-
-
-/* Moving infrastructure grid */
-
-@keyframes networkGridMove {
-
-    0% {
-        background-position:
-            0 0,
-            0 0,
-            0 0,
-            0 0;
-    }
-
-    50% {
-        background-position:
-            130px 80px,
-            -100px 120px,
-            35px 35px,
-            -35px 35px;
-    }
-
-    100% {
-        background-position:
-            260px 160px,
-            -200px 240px,
-            70px 70px,
-            -70px 70px;
-    }
-}
-
-
-/* Canvas glow */
-
-@keyframes networkCanvasGlow {
-
-    0% {
-        opacity: 0.58;
-
-        filter:
-            drop-shadow(
-                0 0 4px
-                rgba(255, 45, 30, 0.25)
-            );
-    }
-
-    50% {
-        opacity: 0.85;
-
-        filter:
-            drop-shadow(
-                0 0 10px
-                rgba(255, 180, 20, 0.35)
-            );
-    }
-
-    100% {
-        opacity: 0.65;
-
-        filter:
-            drop-shadow(
-                0 0 6px
-                rgba(255, 55, 30, 0.28)
-            );
-    }
-}
-
-
-/* Network node pulse */
-
-@keyframes nodePulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-
-        box-shadow:
-            0 0 8px
-            rgba(255, 60, 30, 0.25);
-    }
-
-    50% {
-        transform: scale(1.25);
-
-        box-shadow:
-            0 0 18px
-            rgba(255, 190, 20, 0.60);
-    }
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 900px) {
-
-    .hero-container {
-        grid-template-columns: 1fr;
-
-        gap: 45px;
-    }
-
-
-    .hero-photo-wrap {
-        order: -1;
-
-        width: 300px;
-    }
-
-
-    .hero-photo {
-        width: 300px;
-    }
-
-
-    .hero-content {
-        text-align: center;
-
-        margin: 0 auto;
-    }
-
-
-    .hero-label {
-        line-height: 1.7;
-    }
-
-
-    .hero-description {
-        margin-left: auto;
-
-        margin-right: auto;
-    }
-
-
-    .hero-buttons {
-        justify-content: center;
-    }
-
-
-    .about-content,
-    .contact-content {
-        grid-template-columns: 1fr;
-    }
-
-
-    .skills-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 760px) {
-
-    .container {
-        width:
-            min(
-                100% - 32px,
-                560px
-            );
-    }
-
-
-    .nav-container {
-        min-height: 68px;
-    }
-
-
-    .ceh-logo img {
-        width: 52px;
-        height: 52px;
-    }
-
-
-    .menu-toggle {
-        display: block;
-
-        margin-left: auto;
-    }
-
-
-    .nav-links {
-        position: absolute;
-
-        left: 16px;
-
-        right: 16px;
-
-        top:
-            calc(100% + 8px);
-
-        display: none;
-
-        flex-direction: column;
-
-        align-items: stretch;
-
-        gap: 0;
-
-        padding: 10px;
-
-        background:
-            rgba(12, 5, 4, 0.98);
-
-        border:
-            1px solid
-            var(--border);
-
-        border-radius: 14px;
-
-        box-shadow:
-            0 20px 45px
-            rgba(0,0,0,0.45);
-    }
-
-
-    .nav-links.open {
-        display: flex;
-    }
-
-
-    .nav-links a {
-        padding: 13px 14px;
-
-        font-size: 14px;
-
-        border-bottom:
-            1px solid
-            rgba(255, 60, 30, 0.08);
-    }
-
-
-    .nav-links a:last-child {
-        border-bottom: 0;
-    }
-
-
-    .nav-resume {
-        margin-top: 6px;
-
-        text-align: center;
-    }
-
-
-    /* Hero */
-
-    .hero {
-        min-height: auto;
-
-        padding:
-            58px 0 42px;
-    }
-
-
-    .hero-photo-wrap {
-        width:
-            min(78vw, 300px);
-    }
-
-
-    .hero-photo {
-        width: 100%;
-
-        border-radius: 24px;
-    }
-
-
-    .hero-badge {
-        width: 74px;
-
-        height: 74px;
-
-        right: -12px;
-
-        bottom: 6px;
-    }
-
-
-    .hero h1 {
-        font-size:
-            clamp(42px, 12vw, 60px);
-
-        letter-spacing: -1.8px;
-    }
-
-
-    .hero h2 {
-        font-size: 20px;
-    }
-
-
-    .hero-description {
-        font-size: 15px;
-    }
-
-
-    .hero-stats {
-        margin-top: 42px;
-
-        grid-template-columns: 1fr;
-
-        gap: 12px;
-    }
-
-
-    .hero-stats div {
-        padding: 9px 0;
-
-        border-bottom:
-            1px solid
-            rgba(255, 60, 30, 0.08);
-    }
-
-
-    /* Sections */
-
-    .section {
-        padding: 76px 0;
-    }
-
-
-    .section-heading {
-        margin-bottom: 32px;
-
-        gap: 10px;
-    }
-
-
-    .section-heading h2 {
-        font-size: 32px;
-    }
-
-
-    .skills-grid,
-    .cert-grid,
-    .education-grid {
-        grid-template-columns: 1fr;
-    }
-
-
-    .skill-card {
-        min-height: auto;
-    }
-
-
-    /* Timeline */
-
-    .timeline::before {
-        left: 7px;
-    }
-
-
-    .timeline-item {
-        padding-left: 30px;
-    }
-
-
-    .timeline-dot {
-        left: 1px;
-    }
-
-
-    .timeline-content {
-        padding: 22px 20px;
-    }
-
-
-    .timeline-content h3 {
-        font-size: 20px;
-    }
-
-
-    /* Certification */
-
-    .cert-card {
-        grid-template-columns:
-            72px 1fr;
-
-        gap: 14px;
-
-        padding: 22px 16px;
-    }
-
-
-    .cert-icon {
-        width: 66px;
-
-        height: 66px;
-    }
-
-
-    /* Contact */
-
-    .contact-links a {
-        padding: 16px 0;
-    }
-
-
-    .contact-links strong {
-        font-size: 14px;
-    }
-
-
-    /* Footer */
-
-    .footer-content {
-        min-height: 95px;
-
-        flex-direction: column;
-
-        justify-content: center;
-
-        text-align: center;
-
-        gap: 4px;
-    }
-
-}
-
-
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
-@media (max-width: 420px) {
-
-    .container {
-        width:
-            min(
-                100% - 24px,
-                390px
-            );
-    }
-
-
-    .hero-photo-wrap {
-        width:
-            min(82vw, 285px);
-    }
-
-
-    .hero h1 {
-        font-size: 41px;
-    }
-
-
-    .hero h2 {
-        font-size: 18px;
-    }
-
-
-    .hero-buttons {
-        flex-direction: column;
-    }
-
-
-    .btn {
-        width: 100%;
-    }
-
-
-    .cert-card {
-        grid-template-columns: 1fr;
-    }
-
-
-    .cert-icon {
-        width: 76px;
-
-        height: 76px;
-    }
-
-}
-
-
-/* =========================================================
-   REDUCE MOTION FOR ACCESSIBILITY
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-
-        animation-iteration-count: 1 !important;
-
-        scroll-behavior: auto !important;
-    }
-
-}
+.time
