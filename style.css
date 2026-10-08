@@ -1,50 +1,45 @@
-// ===============================
-// SONU SINGH PORTFOLIO
-// Basic Website Interactions
-// ===============================
+/* =========================================
+   SONU SINGH PORTFOLIO
+   IT INFRASTRUCTURE / M365 / CYBER SECURITY
+   ========================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+/* -----------------------------------------
+   GLOBAL
+   ----------------------------------------- */
 
-    // Smooth scrolling for internal navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        link.addEventListener("click", function (event) {
+html {
+    scroll-behavior: smooth;
+}
 
-            const targetId = this.getAttribute("href");
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #06111f !important;
+    color: #e8f7ff;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
 
-            if (targetId === "#") {
-                return;
-            }
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
-            const target = document.querySelector(targetId);
-
-            if (target) {
-                event.preventDefault();
-
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            }
-
-        });
-
-    });
+img {
+    max-width: 100%;
+    display: block;
+}
 
 
-    // Current year automatically updates in footer
-    const footerYear = document.querySelector("footer p");
-
-    if (footerYear) {
-        footerYear.innerHTML =
-            "© " + new Date().getFullYear() +
-            " Sonu Singh. All Rights Reserved.";
-    }
-
-});
-      /* =================================
-   IT NETWORK BACKGROUND
-   ================================= */
+/* -----------------------------------------
+   NETWORK BACKGROUND
+   ----------------------------------------- */
 
 #network-background {
     position: fixed;
@@ -57,10 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
     background: transparent;
 }
 
-body {
-    position: relative;
-    background: #06111f;
-}
+
+/* Soft blue atmospheric glow */
 
 body::before {
     content: "";
@@ -71,18 +64,695 @@ body::before {
 
     background:
         radial-gradient(
-            circle at 20% 20%,
-            rgba(0, 180, 255, 0.05),
-            transparent 35%
+            circle at 15% 20%,
+            rgba(0, 200, 255, 0.08),
+            transparent 32%
         ),
         radial-gradient(
-            circle at 80% 70%,
-            rgba(0, 120, 255, 0.04),
+            circle at 85% 70%,
+            rgba(0, 100, 255, 0.07),
             transparent 35%
         );
 }
 
+
+/* -----------------------------------------
+   COMMON CONTAINER
+   ----------------------------------------- */
+
+.container {
+    width: 90%;
+    max-width: 1150px;
+    margin: auto;
+}
+
+
+/* -----------------------------------------
+   HEADER / NAVBAR
+   ----------------------------------------- */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(5, 16, 30, 0.90);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid rgba(0, 200, 255, 0.15);
+}
+
+nav {
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #00c8ff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #c7d9e5;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #00c8ff;
+}
+
+
+/* -----------------------------------------
+   HERO
+   ----------------------------------------- */
+
+.hero {
+    min-height: 88vh;
+
+    display: flex;
+    align-items: center;
+
+    padding: 80px 0;
+}
+
+.hero-content {
+    width: 60%;
+}
+
+.hero-label {
+    display: inline-block;
+
+    padding: 7px 14px;
+    margin-bottom: 18px;
+
+    border: 1px solid rgba(0, 200, 255, 0.35);
+    border-radius: 30px;
+
+    background: rgba(0, 200, 255, 0.06);
+
+    color: #00c8ff;
+
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 78px);
+    line-height: 1;
+    margin-bottom: 18px;
+
+    color: #ffffff;
+    letter-spacing: -2px;
+}
+
+.hero h1 span {
+    color: #00c8ff;
+}
+
+.hero h2 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #c8dce8;
+    margin-bottom: 22px;
+}
+
+.hero p {
+    max-width: 720px;
+
+    color: #a9bdc9;
+    font-size: 16px;
+
+    margin-bottom: 30px;
+}
+
+
+/* -----------------------------------------
+   BUTTONS
+   ----------------------------------------- */
+
+.btn-group {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 22px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.3s ease;
+}
+
+.btn-primary {
+    background: #00c8ff;
+    color: #04101d;
+}
+
+.btn-primary:hover {
+    background: #48d8ff;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    border: 1px solid rgba(0, 200, 255, 0.4);
+    color: #00c8ff;
+    background: rgba(0, 200, 255, 0.04);
+}
+
+.btn-secondary:hover {
+    background: rgba(0, 200, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+
+/* -----------------------------------------
+   HERO PHOTO
+   ----------------------------------------- */
+
+.hero-image {
+    width: 40%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-placeholder {
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid rgba(0, 200, 255, 0.45);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 200, 255, 0.12),
+            rgba(4, 15, 29, 0.85)
+        );
+
+    box-shadow:
+        0 0 40px rgba(0, 200, 255, 0.12),
+        inset 0 0 40px rgba(0, 200, 255, 0.05);
+}
+
+.photo-placeholder strong {
+    font-size: 60px;
+    color: #00c8ff;
+}
+
+.photo-placeholder span {
+    color: #8fa8b7;
+    font-size: 13px;
+}
+
+
+/* -----------------------------------------
+   SECTIONS
+   ----------------------------------------- */
+
+section {
+    padding: 90px 0;
+    background: transparent;
+}
+
+.section-title {
+    margin-bottom: 45px;
+}
+
+.section-title span {
+    color: #00c8ff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.section-title h2 {
+    margin-top: 8px;
+
+    font-size: 36px;
+    color: #ffffff;
+}
+
+.section-title p {
+    margin-top: 10px;
+    max-width: 700px;
+
+    color: #9fb4c1;
+}
+
+
+/* -----------------------------------------
+   ABOUT
+   ----------------------------------------- */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 50px;
+}
+
+.about-text p {
+    color: #afc0ca;
+    margin-bottom: 18px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.stat-card {
+    padding: 25px 18px;
+
+    background: rgba(8, 25, 43, 0.72);
+
+    border: 1px solid rgba(0, 200, 255, 0.14);
+    border-radius: 10px;
+
+    text-align: center;
+}
+
+.stat-card strong {
+    display: block;
+
+    font-size: 28px;
+    color: #00c8ff;
+}
+
+.stat-card span {
+    color: #9db2bf;
+    font-size: 12px;
+}
+
+
+/* -----------------------------------------
+   SKILLS
+   ----------------------------------------- */
+
+.skills-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.skill-card {
+    padding: 25px;
+
+    background: rgba(8, 25, 43, 0.72);
+
+    border: 1px solid rgba(0, 200, 255, 0.13);
+
+    border-radius: 10px;
+
+    transition: 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(0, 200, 255, 0.45);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.skill-card h3 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.skill-card p {
+    color: #9fb4c1;
+    font-size: 14px;
+}
+
+
+/* -----------------------------------------
+   EXPERIENCE
+   ----------------------------------------- */
+
+.timeline {
+    position: relative;
+
+    margin-left: 12px;
+    padding-left: 35px;
+
+    border-left: 1px solid rgba(0, 200, 255, 0.25);
+}
+
+.timeline-item {
+    position: relative;
+
+    margin-bottom: 45px;
+}
+
+.timeline-item::before {
+    content: "";
+
+    position: absolute;
+
+    width: 11px;
+    height: 11px;
+
+    border-radius: 50%;
+
+    background: #00c8ff;
+
+    left: -41px;
+    top: 7px;
+
+    box-shadow:
+        0 0 12px rgba(0, 200, 255, 0.65);
+}
+
+.timeline-item h3 {
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.timeline-item .company {
+    color: #00c8ff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.timeline-item .date {
+    display: inline-block;
+
+    margin: 7px 0 12px;
+
+    color: #7f99a8;
+
+    font-size: 12px;
+}
+
+.timeline-item ul {
+    padding-left: 18px;
+}
+
+.timeline-item li {
+    color: #a8bac5;
+    margin-bottom: 7px;
+    font-size: 14px;
+}
+
+
+/* -----------------------------------------
+   CERTIFICATIONS
+   ----------------------------------------- */
+
+.certifications-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+.cert-card {
+    padding: 25px;
+
+    background: rgba(8, 25, 43, 0.72);
+
+    border: 1px solid rgba(0, 200, 255, 0.13);
+
+    border-radius: 10px;
+}
+
+.cert-card h3 {
+    color: #ffffff;
+    margin-bottom: 7px;
+}
+
+.cert-card p {
+    color: #9fb4c1;
+    font-size: 14px;
+}
+
+.cert-card strong {
+    color: #00c8ff;
+}
+
+
+/* -----------------------------------------
+   EDUCATION
+   ----------------------------------------- */
+
+.education-card {
+    padding: 28px;
+
+    background: rgba(8, 25, 43, 0.72);
+
+    border: 1px solid rgba(0, 200, 255, 0.13);
+
+    border-radius: 10px;
+
+    margin-bottom: 18px;
+}
+
+.education-card h3 {
+    color: #ffffff;
+}
+
+.education-card p {
+    color: #9fb4c1;
+    margin-top: 5px;
+}
+
+
+/* -----------------------------------------
+   CONTACT
+   ----------------------------------------- */
+
+.contact-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.contact-card {
+    padding: 25px;
+
+    text-align: center;
+
+    background: rgba(8, 25, 43, 0.72);
+
+    border: 1px solid rgba(0, 200, 255, 0.13);
+
+    border-radius: 10px;
+
+    transition: 0.3s ease;
+}
+
+.contact-card:hover {
+    border-color: rgba(0, 200, 255, 0.45);
+}
+
+.contact-card h3 {
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.contact-card a,
+.contact-card p {
+    color: #9fb4c1;
+    font-size: 14px;
+}
+
+.contact-card a:hover {
+    color: #00c8ff;
+}
+
+
+/* -----------------------------------------
+   FOOTER
+   ----------------------------------------- */
+
+footer {
+    padding: 30px 0;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(0, 200, 255, 0.12);
+
+    background: rgba(4, 13, 24, 0.85);
+}
+
+footer p {
+    color: #718896;
+    font-size: 13px;
+}
+
+
+/* -----------------------------------------
+   RESPONSIVE TABLET
+   ----------------------------------------- */
+
+@media (max-width: 900px) {
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .hero-image {
+        width: 100%;
+        margin-top: 50px;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .btn-group {
+        justify-content: center;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* -----------------------------------------
+   RESPONSIVE MOBILE
+   ----------------------------------------- */
+
+@media (max-width: 650px) {
+
+    .container {
+        width: 92%;
+    }
+
+    nav {
+        min-height: 65px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 70px 0;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .hero h2 {
+        font-size: 19px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .photo-placeholder {
+        width: 220px;
+        height: 220px;
+    }
+
+    .photo-placeholder strong {
+        font-size: 45px;
+    }
+
+    section {
+        padding: 65px 0;
+    }
+
+    .section-title h2 {
+        font-size: 29px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .certifications-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* -----------------------------------------
+   REDUCE MOTION
+   ----------------------------------------- */
+
 @media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
 
     #network-background {
         display: none;
