@@ -1037,3 +1037,6 @@ footer .footer-tagline {
         padding: 18px 16px;
     }
 }
+body {
+    background: red !important;
+}
