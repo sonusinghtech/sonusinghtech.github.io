@@ -1107,4 +1107,427 @@ footer p {
 
 
 /* =========================================================
- 
+   FINAL BACKGROUND + ORIGINAL LAYOUT FIX
+   Paste at the VERY END of style.css
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   1. OLD JS CANVAS HIDE
+--------------------------------------------------------- */
+
+#network-background {
+    display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   2. STRONGER CYBER BACKGROUND
+--------------------------------------------------------- */
+
+body {
+    background-color: #06111f !important;
+    color: #e8f2ff;
+}
+
+
+/* Main glow */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -15%;
+    z-index: -5;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(0, 200, 255, 0.16),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 82% 30%,
+            rgba(30, 130, 255, 0.13),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 65% 85%,
+            rgba(124, 92, 255, 0.10),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #040b15 0%,
+            #06111f 50%,
+            #071525 100%
+        );
+
+    animation: backgroundGlow 18s ease-in-out infinite alternate;
+}
+
+
+/* ---------------------------------------------------------
+   3. VISIBLE NETWORK NODES
+--------------------------------------------------------- */
+
+html::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -4;
+    pointer-events: none;
+
+    opacity: 0.90;
+
+    background-image:
+        radial-gradient(
+            circle at 8% 18%,
+            rgba(0, 200, 255, 0.90) 0 2px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 23% 42%,
+            rgba(0, 200, 255, 0.75) 0 2px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 38% 16%,
+            rgba(22, 140, 255, 0.90) 0 2px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 52% 36%,
+            rgba(0, 200, 255, 0.85) 0 2px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 67% 17%,
+            rgba(124, 92, 255, 0.80) 0 2px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 82% 42%,
+            rgba(0, 200, 255, 0.90) 0 2px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 92% 22%,
+            rgba(22, 140, 255, 0.75) 0 2px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 12% 70%,
+            rgba(124, 92, 255, 0.75) 0 2px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 32% 82%,
+            rgba(0, 200, 255, 0.85) 0 2px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 52% 68%,
+            rgba(22, 140, 255, 0.90) 0 2px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 73% 82%,
+            rgba(0, 200, 255, 0.85) 0 2px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 91% 70%,
+            rgba(124, 92, 255, 0.75) 0 2px,
+            transparent 3px
+        );
+
+    background-size: 100% 100%;
+
+    animation: nodesPulse 5s ease-in-out infinite alternate;
+}
+
+
+/* ---------------------------------------------------------
+   4. NETWORK CONNECTION LINES
+--------------------------------------------------------- */
+
+html::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    pointer-events: none;
+
+    opacity: 0.55;
+
+    background-image:
+        linear-gradient(
+            28deg,
+            transparent 49.6%,
+            rgba(0, 200, 255, 0.34) 49.8%,
+            rgba(0, 200, 255, 0.34) 50.2%,
+            transparent 50.4%
+        ),
+        linear-gradient(
+            152deg,
+            transparent 49.6%,
+            rgba(22, 140, 255, 0.28) 49.8%,
+            rgba(22, 140, 255, 0.28) 50.2%,
+            transparent 50.4%
+        ),
+        linear-gradient(
+            62deg,
+            transparent 49.7%,
+            rgba(124, 92, 255, 0.22) 49.9%,
+            rgba(124, 92, 255, 0.22) 50.1%,
+            transparent 50.3%
+        );
+
+    background-size:
+        520px 420px,
+        680px 540px,
+        760px 620px;
+
+    background-position:
+        0 0,
+        180px 100px,
+        80px 260px;
+
+    animation: networkMove 35s linear infinite;
+}
+
+
+/* ---------------------------------------------------------
+   5. SUBTLE TECH GRID
+--------------------------------------------------------- */
+
+body {
+    background-image:
+        linear-gradient(
+            rgba(0, 200, 255, 0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0, 200, 255, 0.025) 1px,
+            transparent 1px
+        ) !important;
+
+    background-size: 55px 55px !important;
+}
+
+
+/* ---------------------------------------------------------
+   6. KEEP CONTENT ABOVE BACKGROUND
+--------------------------------------------------------- */
+
+.navbar,
+.hero,
+.section,
+.contact-section,
+footer {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* ---------------------------------------------------------
+   7. KEEP ORIGINAL SECTION LOOK
+--------------------------------------------------------- */
+
+.dark-section {
+    background: rgba(2, 12, 24, 0.18) !important;
+}
+
+
+/* ---------------------------------------------------------
+   8. ORIGINAL HERO SPACING
+--------------------------------------------------------- */
+
+.hero-container {
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 720px;
+}
+
+.hero-description {
+    max-width: 680px;
+}
+
+
+/* ---------------------------------------------------------
+   9. ORIGINAL PHOTO SIZE
+--------------------------------------------------------- */
+
+.hero-photo-wrap {
+    width: 360px;
+}
+
+.hero-photo {
+    width: 360px;
+}
+
+.hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* ---------------------------------------------------------
+   10. ORIGINAL TEXT ALIGNMENT
+--------------------------------------------------------- */
+
+.hero h1 {
+    line-height: 1.05;
+}
+
+.hero h2 {
+    line-height: 1.3;
+}
+
+.section-heading {
+    text-align: left;
+}
+
+
+/* ---------------------------------------------------------
+   11. BACKGROUND ANIMATIONS
+--------------------------------------------------------- */
+
+@keyframes backgroundGlow {
+
+    0% {
+        transform: translate3d(-1%, -1%, 0) scale(1);
+    }
+
+    50% {
+        transform: translate3d(1%, 0, 0) scale(1.03);
+    }
+
+    100% {
+        transform: translate3d(2%, 2%, 0) scale(1.06);
+    }
+}
+
+
+@keyframes nodesPulse {
+
+    0% {
+        opacity: 0.65;
+        filter: brightness(0.85);
+    }
+
+    50% {
+        opacity: 0.90;
+        filter: brightness(1.15);
+    }
+
+    100% {
+        opacity: 1;
+        filter: brightness(1.30);
+    }
+}
+
+
+@keyframes networkMove {
+
+    0% {
+        background-position:
+            0 0,
+            180px 100px,
+            80px 260px;
+    }
+
+    50% {
+        background-position:
+            120px 80px,
+            60px 180px,
+            180px 120px;
+    }
+
+    100% {
+        background-position:
+            240px 160px,
+            -60px 260px,
+            280px -20px;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   12. MOBILE - DON'T DISTURB ORIGINAL LAYOUT
+--------------------------------------------------------- */
+
+@media (max-width: 760px) {
+
+    .hero-container {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-photo-wrap {
+        width: 290px;
+        margin: 0 auto;
+    }
+
+    .hero-photo {
+        width: 290px;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .section-heading {
+        text-align: left;
+    }
+
+    html::before {
+        opacity: 0.78;
+    }
+
+    html::after {
+        opacity: 0.40;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   13. SMALL MOBILE
+--------------------------------------------------------- */
+
+@media (max-width: 480px) {
+
+    .hero-photo-wrap {
+        width: 260px;
+    }
+
+    .hero-photo {
+        width: 260px;
+    }
+
+    html::before {
+        opacity: 0.70;
+    }
+
+    html::after {
+        opacity: 0.32;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   14. REDUCE MOTION ACCESSIBILITY
+--------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    body::before,
+    html::before,
+    html::after {
+        animation: none !important;
+    }
+}
