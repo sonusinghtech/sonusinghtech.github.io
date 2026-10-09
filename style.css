@@ -1257,3 +1257,7 @@ body.hacking-theme .btn-primary {
 #network-background {
   opacity: 0.42;
 }
+.profile-caption .caption-number {
+  color: #ff4b4b;
+  font-weight: 850;
+}
