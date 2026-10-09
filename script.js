@@ -1,8 +1,11 @@
+
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
-  const menuToggle = document.getElementById("menu-toggle");
-  const navLinks = document.getElementById("nav-links");
-  const themeToggle = document.getElementById("theme-toggle");
+
+  // Support both IDs and CSS classes.
+  const menuToggle = document.querySelector("#menu-toggle, .menu-toggle");
+  const navLinks = document.querySelector("#nav-links, .nav-links");
+  const themeToggle = document.querySelector("#theme-toggle, .theme-toggle");
   const themeLabel = document.querySelector(".theme-toggle-label");
   const themeIcon = document.querySelector(".theme-toggle-icon");
   const currentYear = document.getElementById("current-year");
@@ -12,9 +15,35 @@ document.addEventListener("DOMContentLoaded", () => {
     currentYear.textContent = new Date().getFullYear();
   }
 
-  // Mobile navigation menu.
+  // -------------------------------
+  // MOBILE NAVIGATION MENU
+  // -------------------------------
+  function closeMenu() {
+    if (!menuToggle || !navLinks) return;
+
+    navLinks.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation menu");
+  }
+
   if (menuToggle && navLinks) {
-    menuToggle.addEventListener("click", () => {
+    // Ensure the initial state is correct.
+    menuToggle.setAttribute(
+      "aria-expanded",
+      String(navLinks.classList.contains("is-open"))
+    );
+
+    menuToggle.setAttribute(
+      "aria-label",
+      navLinks.classList.contains("is-open")
+        ? "Close navigation menu"
+        : "Open navigation menu"
+    );
+
+    menuToggle.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
       const isOpen = navLinks.classList.toggle("is-open");
 
       menuToggle.setAttribute("aria-expanded", String(isOpen));
@@ -24,67 +53,79 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     });
 
+    // Close the menu after selecting a navigation link.
     navLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("is-open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation menu");
-      });
+      link.addEventListener("click", closeMenu);
     });
 
+    // Close when tapping outside the menu.
     document.addEventListener("click", (event) => {
       if (
         navLinks.classList.contains("is-open") &&
         !navLinks.contains(event.target) &&
         !menuToggle.contains(event.target)
       ) {
-        navLinks.classList.remove("is-open");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        closeMenu();
+      }
+    });
+
+    // Close with the Escape key.
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+        menuToggle.focus();
       }
     });
   }
 
-  // Theme switch.
+  // -------------------------------
+  // THEME SWITCH
+  // -------------------------------
   function updateThemeButton() {
-    if (!themeToggle || !themeLabel || !themeIcon) return;
+    if (!themeToggle) return;
 
-    const isHackingTheme = body.classList.contains("hacking-theme");
+    const isCybersecurityTheme = body.classList.contains("hacking-theme");
 
-    themeLabel.textContent = isHackingTheme
-      ? "Professional Blue Theme"
-      : "Cybersecurity Theme";
+    if (themeLabel) {
+      themeLabel.textContent = isCybersecurityTheme
+        ? "Professional Blue Theme"
+        : "Cybersecurity Theme";
+    }
 
-    themeIcon.textContent = isHackingTheme ? "◈" : "◐";
+    if (themeIcon) {
+      themeIcon.textContent = isCybersecurityTheme ? "◈" : "◐";
+    }
 
     themeToggle.setAttribute(
       "aria-label",
-      isHackingTheme
+      isCybersecurityTheme
         ? "Switch to Professional Blue theme"
         : "Switch to Cybersecurity theme"
     );
 
-    themeToggle.setAttribute("aria-pressed", String(isHackingTheme));
+    themeToggle.setAttribute(
+      "aria-pressed",
+      String(isCybersecurityTheme)
+    );
   }
 
   if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
+    themeToggle.addEventListener("click", (event) => {
+      event.preventDefault();
+
       body.classList.toggle("hacking-theme");
       updateThemeButton();
+      drawNetworkIfReady();
     });
   }
 
   updateThemeButton();
 
-  // Animated network background.
+  // -------------------------------
+  // ANIMATED NETWORK BACKGROUND
+  // -------------------------------
   const canvas = document.getElementById("network-background");
   const context = canvas ? canvas.getContext("2d") : null;
-
-  if (!canvas || !context) return;
-
-  const reducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  );
 
   let width = 0;
   let height = 0;
@@ -92,10 +133,28 @@ document.addEventListener("DOMContentLoaded", () => {
   let animationFrame = null;
   let lastFrame = 0;
 
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
   const particleCount = () =>
     Math.min(85, Math.max(30, Math.floor((width * height) / 20000)));
 
+  function getAccentColor() {
+    return body.classList.contains("hacking-theme")
+      ? "255, 75, 75"
+      : "69, 217, 255";
+  }
+
+  function drawNetworkIfReady() {
+    if (canvas && context && width > 0 && height > 0) {
+      drawNetwork();
+    }
+  }
+
   function resizeCanvas() {
+    if (!canvas || !context) return;
+
     const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
 
     width = window.innerWidth;
@@ -119,22 +178,18 @@ document.addEventListener("DOMContentLoaded", () => {
     drawNetwork();
   }
 
-  function getAccentColor() {
-    return body.classList.contains("hacking-theme")
-      ? "255, 75, 75"
-      : "69, 217, 255";
-  }
-
   function drawNetwork() {
+    if (!canvas || !context) return;
+
     context.clearRect(0, 0, width, height);
 
     const color = getAccentColor();
     const maxDistance = Math.min(170, width * 0.22);
 
-    // Draw brighter connecting lines.
     for (let i = 0; i < particles.length; i++) {
       const particle = particles[i];
 
+      // Connecting lines.
       for (let j = i + 1; j < particles.length; j++) {
         const other = particles[j];
         const dx = particle.x - other.x;
@@ -153,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      // Draw brighter network nodes.
+      // Network nodes.
       context.beginPath();
       context.arc(
         particle.x,
@@ -167,8 +222,6 @@ document.addEventListener("DOMContentLoaded", () => {
       context.shadowBlur = 7;
       context.shadowColor = `rgba(${color}, 0.7)`;
       context.fill();
-
-      // Reset shadow so it does not affect connecting lines.
       context.shadowBlur = 0;
     }
   }
@@ -180,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Limit animation to approximately 30 frames per second.
+    // Limit animation to approximately 30 FPS.
     if (timestamp - lastFrame < 33) {
       animationFrame = requestAnimationFrame(animate);
       return;
@@ -192,8 +245,13 @@ document.addEventListener("DOMContentLoaded", () => {
       particle.x += particle.vx;
       particle.y += particle.vy;
 
-      if (particle.x < 0 || particle.x > width) particle.vx *= -1;
-      if (particle.y < 0 || particle.y > height) particle.vy *= -1;
+      if (particle.x < 0 || particle.x > width) {
+        particle.vx *= -1;
+      }
+
+      if (particle.y < 0 || particle.y > height) {
+        particle.vy *= -1;
+      }
 
       particle.x = Math.max(0, Math.min(width, particle.x));
       particle.y = Math.max(0, Math.min(height, particle.y));
@@ -209,6 +267,8 @@ document.addEventListener("DOMContentLoaded", () => {
       animationFrame = null;
     }
 
+    if (!canvas || !context) return;
+
     if (reducedMotion.matches) {
       drawNetwork();
       return;
@@ -218,72 +278,17 @@ document.addEventListener("DOMContentLoaded", () => {
     animationFrame = requestAnimationFrame(animate);
   }
 
-  window.addEventListener("resize", () => {
+  if (canvas && context) {
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      startAnimation();
+    });
+
+    if (typeof reducedMotion.addEventListener === "function") {
+      reducedMotion.addEventListener("change", startAnimation);
+    }
+
     resizeCanvas();
     startAnimation();
-  });
-
-  if (typeof reducedMotion.addEventListener === "function") {
-    reducedMotion.addEventListener("change", startAnimation);
   }
-
-  resizeCanvas();
-  startAnimation();
 });
-2. style.css — background aur caption ka fix
-Apni existing CSS ko delete mat karna. File ke bilkul end mein ye code paste karo.
-
-css
-
-/* ===== CLEARER TECH BACKGROUND ===== */
-
-.tech-background {
-  opacity: 0.32;
-}
-
-.circuit-lines {
-  stroke-width: 2;
-  opacity: 1;
-}
-
-.circuit-nodes {
-  opacity: 1;
-  filter: drop-shadow(0 0 5px var(--accent));
-}
-
-.tech-symbols {
-  opacity: 1;
-  stroke-width: 2.5;
-}
-
-#network-background {
-  opacity: 0.62;
-}
-
-/* ===== PROFILE CAPTION ALIGNMENT ===== */
-
-.profile-caption {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  width: 100%;
-  min-width: 0;
-  padding: 14px 6px 8px;
-  color: var(--muted);
-  font-size: 0.77rem;
-  font-weight: 650;
-  line-height: 1.4;
-}
-
-.profile-caption-dot {
-  flex: 0 0 8px;
-}
-
-/* Prevent caption text from overflowing on small screens */
-@media (max-width: 480px) {
-  .profile-caption {
-    gap: 7px;
-    padding-inline: 3px;
-    font-size: 0.7rem;
-  }
-}
