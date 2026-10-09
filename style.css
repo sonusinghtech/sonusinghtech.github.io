@@ -1212,3 +1212,48 @@ body.hacking-theme .btn-primary {
     transition-duration: 0.01ms !important;
   }
 }
+/* =========================================
+   CUSTOM FIX: Profile Caption + Background
+   ========================================= */
+
+/* 1. Profile caption alignment */
+.profile-caption {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  min-width: 0;
+  padding: 14px 6px 8px;
+  line-height: 1.4;
+  position: relative;
+  z-index: 1;
+}
+
+/* 2. Make background icons more visible */
+.tech-background {
+  opacity: 0.30;
+}
+
+/* 3. Make circuit lines brighter and clearer */
+.circuit-lines {
+  stroke-width: 1.8;
+  opacity: 1;
+}
+
+/* 4. Make network nodes/dots more visible */
+.circuit-nodes {
+  opacity: 1;
+  filter: drop-shadow(0 0 4px var(--accent));
+}
+
+/* 5. Make monitor, server, cloud, shield, router
+      and database outlines clearer */
+.tech-symbols {
+  opacity: 1;
+  stroke-width: 2.5;
+}
+
+/* 6. Make decorative background slightly clearer */
+#network-background {
+  opacity: 0.42;
+}
