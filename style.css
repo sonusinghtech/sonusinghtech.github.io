@@ -1261,3 +1261,9 @@ body.hacking-theme .btn-primary {
   color: #ff4b4b;
   font-weight: 850;
 }
+
+.profile-caption .caption-number {
+  color: #ff4b4b !important;
+  -webkit-text-fill-color: #ff4b4b !important;
+  font-weight: 900;
+}
