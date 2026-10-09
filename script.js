@@ -1,632 +1,223 @@
-document.addEventListener("DOMContentLoaded", function () {
 
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("nav-links");
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeLabel = document.querySelector(".theme-toggle-label");
+  const themeIcon = document.querySelector(".theme-toggle-icon");
+  const currentYear = document.getElementById("current-year");
 
-    /* ================= MOBILE MENU ================= */
+  // Keep the footer year current.
+  if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
+  }
 
-    const menuToggle =
-        document.getElementById("menuToggle");
-
-    const navMenu =
-        document.getElementById("navLinks");
-
-
-    if (menuToggle && navMenu) {
-
-        menuToggle.addEventListener("click", function () {
-
-            const isOpen =
-                navMenu.classList.toggle("open");
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                String(isOpen)
-            );
-
-        });
-
-
-        window.addEventListener(
-            "resize",
-            function () {
-
-                if (
-                    window.innerWidth > 760 &&
-                    navMenu.classList.contains("open")
-                ) {
-
-                    navMenu.classList.remove("open");
-
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                }
-
-            }
-        );
-
-    }
-
-
-
-    /* ================= SMOOTH SCROLL ================= */
-
-    const navLinks =
-        document.querySelectorAll(
-            '.nav-links a[href^="#"]'
-        );
-
-
-    navLinks.forEach(function (link) {
-
-        link.addEventListener(
-            "click",
-            function (event) {
-
-                const targetId =
-                    this.getAttribute("href");
-
-                const target =
-                    document.querySelector(targetId);
-
-
-                if (target) {
-
-                    event.preventDefault();
-
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-
-                }
-
-
-                /* Close mobile menu */
-
-                if (
-                    navMenu &&
-                    navMenu.classList.contains("open")
-                ) {
-
-                    navMenu.classList.remove("open");
-
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                }
-
-            }
-        );
-
+  // Mobile navigation menu.
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("is-open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+      );
     });
 
-
-
-    /* ================= FOOTER YEAR ================= */
-
-    const footerText =
-        document.querySelector("footer p");
-
-
-    if (footerText) {
-
-        footerText.textContent =
-            "© " +
-            new Date().getFullYear() +
-            " Sonu Singh. All Rights Reserved.";
-
-    }
-
-
-
-    /* ================= NETWORK BACKGROUND ================= */
-
-    const canvas =
-        document.getElementById(
-            "network-background"
-        );
-
-
-    if (!canvas) return;
-
-
-    const ctx =
-        canvas.getContext("2d");
-
-
-    let width = 0;
-    let height = 0;
-
-    let nodes = [];
-
-
-    const mouse = {
-
-        x: null,
-        y: null,
-
-        radius: 150
-
-    };
-
-
-
-    /* ================= RESIZE ================= */
-
-    function resizeCanvas() {
-
-        const ratio =
-            Math.min(
-                window.devicePixelRatio || 1,
-                2
-            );
-
-
-        width =
-            window.innerWidth;
-
-        height =
-            window.innerHeight;
-
-
-        canvas.width =
-            width * ratio;
-
-        canvas.height =
-            height * ratio;
-
-
-        canvas.style.width =
-            width + "px";
-
-        canvas.style.height =
-            height + "px";
-
-
-        ctx.setTransform(
-            ratio,
-            0,
-            0,
-            ratio,
-            0,
-            0
-        );
-
-
-        createNodes();
-
-    }
-
-
-
-    /* ================= CREATE NODES ================= */
-
-    function createNodes() {
-
-        const pageHeight =
-            document.body.scrollHeight;
-
-
-        const count =
-            window.innerWidth < 600
-                ? Math.max(
-                    40,
-                    Math.floor(
-                        pageHeight / 350
-                    )
-                )
-                : Math.max(
-                    90,
-                    Math.floor(
-                        pageHeight / 170
-                    )
-                );
-
-
-        nodes = [];
-
-
-        for (
-            let i = 0;
-            i < count;
-            i++
-        ) {
-
-            nodes.push({
-
-                x:
-                    Math.random() *
-                    width,
-
-                y:
-                    Math.random() *
-                    pageHeight,
-
-                vx:
-                    (Math.random() - 0.5)
-                    * 0.16,
-
-                vy:
-                    (Math.random() - 0.5)
-                    * 0.10,
-
-                radius:
-                    Math.random()
-                    * 1.35
-                    + 0.55
-
-            });
-
-        }
-
-    }
-
-
-
-    /* ================= MOUSE ================= */
-
-    document.addEventListener(
-        "mousemove",
-        function (event) {
-
-            mouse.x =
-                event.clientX;
-
-            mouse.y =
-                event.clientY +
-                window.scrollY;
-
-        }
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("is-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      if (
+        navLinks.classList.contains("is-open") &&
+        !navLinks.contains(event.target) &&
+        !menuToggle.contains(event.target)
+      ) {
+        navLinks.classList.remove("is-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+      }
+    });
+  }
+
+  // Theme switch: the content remains the same in both themes.
+  function updateThemeButton() {
+    if (!themeToggle || !themeLabel || !themeIcon) return;
+
+    const isHackingTheme = body.classList.contains("hacking-theme");
+
+    themeLabel.textContent = isHackingTheme
+      ? "Professional Blue Theme"
+      : "Cybersecurity Theme";
+
+    themeIcon.textContent = isHackingTheme ? "◈" : "◐";
+
+    themeToggle.setAttribute(
+      "aria-label",
+      isHackingTheme
+        ? "Switch to Professional Blue theme"
+        : "Switch to Cybersecurity theme"
     );
 
+    themeToggle.setAttribute("aria-pressed", String(isHackingTheme));
+  }
 
-    document.addEventListener(
-        "mouseleave",
-        function () {
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      body.classList.toggle("hacking-theme");
+      updateThemeButton();
+    });
+  }
 
-            mouse.x = null;
-            mouse.y = null;
+  updateThemeButton();
 
+  // Animated network background.
+  const canvas = document.getElementById("network-background");
+  const context = canvas ? canvas.getContext("2d") : null;
+
+  if (!canvas || !context) return;
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+  let width = 0;
+  let height = 0;
+  let particles = [];
+  let animationFrame = null;
+  let lastFrame = 0;
+
+  const particleCount = () =>
+    Math.min(65, Math.max(24, Math.floor((width * height) / 24000)));
+
+  function resizeCanvas() {
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.width = Math.floor(width * pixelRatio);
+    canvas.height = Math.floor(height * pixelRatio);
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+
+    context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+    particles = Array.from({ length: particleCount() }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      radius: Math.random() * 1.5 + 0.7
+    }));
+
+    if (reducedMotion.matches) {
+      drawNetwork();
+    }
+  }
+
+  function getAccentColor() {
+    return body.classList.contains("hacking-theme")
+      ? "255, 75, 75"
+      : "69, 217, 255";
+  }
+
+  function drawNetwork() {
+    context.clearRect(0, 0, width, height);
+
+    const color = getAccentColor();
+    const maxDistance = Math.min(145, width * 0.19);
+
+    for (let i = 0; i < particles.length; i++) {
+      const particle = particles[i];
+
+      for (let j = i + 1; j < particles.length; j++) {
+        const other = particles[j];
+        const dx = particle.x - other.x;
+        const dy = particle.y - other.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < maxDistance) {
+          const opacity = (1 - distance / maxDistance) * 0.2;
+
+          context.beginPath();
+          context.moveTo(particle.x, particle.y);
+          context.lineTo(other.x, other.y);
+          context.strokeStyle = `rgba(${color}, ${opacity})`;
+          context.lineWidth = 0.8;
+          context.stroke();
         }
-    );
-
-
-
-    /* ================= DRAW NETWORK ================= */
-
-    function drawNetwork() {
-
-        ctx.clearRect(
-            0,
-            0,
-            width,
-            height
-        );
-
-
-        const pageHeight =
-            document.body.scrollHeight;
-
-        const scrollY =
-            window.scrollY;
-
-
-
-        /* Nodes */
-
-        nodes.forEach(
-            function (node, index) {
-
-
-                node.x += node.vx;
-                node.y += node.vy;
-
-
-                if (
-                    node.x < -20 ||
-                    node.x > width + 20
-                ) {
-
-                    node.vx *= -1;
-
-                }
-
-
-                if (
-                    node.y < 0 ||
-                    node.y > pageHeight
-                ) {
-
-                    node.vy *= -1;
-
-                }
-
-
-                const screenY =
-                    node.y - scrollY;
-
-
-                if (
-                    screenY < -40 ||
-                    screenY > height + 40
-                ) {
-
-                    return;
-
-                }
-
-
-                /* Node */
-
-                ctx.beginPath();
-
-                ctx.arc(
-                    node.x,
-                    screenY,
-                    node.radius,
-                    0,
-                    Math.PI * 2
-                );
-
-
-                ctx.fillStyle =
-                    "rgba(0, 200, 255, 0.50)";
-
-
-                ctx.fill();
-
-
-
-                /* Circuit branch */
-
-                if (
-                    index % 5 === 0
-                ) {
-
-                    ctx.beginPath();
-
-                    ctx.moveTo(
-                        node.x,
-                        screenY
-                    );
-
-                    ctx.lineTo(
-                        node.x + 18,
-                        screenY
-                    );
-
-                    ctx.lineTo(
-                        node.x + 18,
-                        screenY + 18
-                    );
-
-
-                    ctx.strokeStyle =
-                        "rgba(0, 190, 255, 0.12)";
-
-                    ctx.lineWidth = 1;
-
-                    ctx.stroke();
-
-                }
-
-            }
-        );
-
-
-
-        /* Network connections */
-
-        for (
-            let i = 0;
-            i < nodes.length;
-            i++
-        ) {
-
-            const a =
-                nodes[i];
-
-            const ay =
-                a.y - scrollY;
-
-
-            if (
-                ay < -50 ||
-                ay > height + 50
-            ) {
-
-                continue;
-
-            }
-
-
-            for (
-                let j = i + 1;
-                j < nodes.length;
-                j++
-            ) {
-
-                const b =
-                    nodes[j];
-
-                const by =
-                    b.y - scrollY;
-
-
-                if (
-                    by < -50 ||
-                    by > height + 50
-                ) {
-
-                    continue;
-
-                }
-
-
-                const dx =
-                    a.x - b.x;
-
-                const dy =
-                    ay - by;
-
-
-                const distance =
-                    Math.sqrt(
-                        dx * dx +
-                        dy * dy
-                    );
-
-
-                if (
-                    distance < 135
-                ) {
-
-                    const opacity =
-                        (
-                            1 -
-                            distance / 135
-                        ) * 0.16;
-
-
-                    ctx.beginPath();
-
-                    ctx.moveTo(
-                        a.x,
-                        ay
-                    );
-
-                    ctx.lineTo(
-                        b.x,
-                        by
-                    );
-
-
-                    ctx.strokeStyle =
-                        `rgba(
-                            0,
-                            175,
-                            255,
-                            ${opacity}
-                        )`;
-
-
-                    ctx.lineWidth = 1;
-
-                    ctx.stroke();
-
-                }
-
-            }
-
-        }
-
-
-
-        /* Mouse connection effect */
-
-        if (
-            mouse.x !== null &&
-            mouse.y !== null
-        ) {
-
-            nodes.forEach(
-                function (node) {
-
-                    const dx =
-                        mouse.x -
-                        node.x;
-
-
-                    const dy =
-                        mouse.y -
-                        node.y;
-
-
-                    const distance =
-                        Math.sqrt(
-                            dx * dx +
-                            dy * dy
-                        );
-
-
-                    if (
-                        distance <
-                        mouse.radius
-                    ) {
-
-                        const opacity =
-                            (
-                                1 -
-                                distance /
-                                mouse.radius
-                            ) * 0.20;
-
-
-                        ctx.beginPath();
-
-                        ctx.moveTo(
-                            node.x,
-                            node.y -
-                            window.scrollY
-                        );
-
-                        ctx.lineTo(
-                            mouse.x,
-                            mouse.y -
-                            window.scrollY
-                        );
-
-
-                        ctx.strokeStyle =
-                            `rgba(
-                                0,
-                                200,
-                                255,
-                                ${opacity}
-                            )`;
-
-
-                        ctx.lineWidth = 1;
-
-                        ctx.stroke();
-
-                    }
-
-                }
-            );
-
-        }
-
+      }
+
+      context.beginPath();
+      context.arc(
+        particle.x,
+        particle.y,
+        particle.radius,
+        0,
+        Math.PI * 2
+      );
+      context.fillStyle = `rgba(${color}, 0.55)`;
+      context.fill();
+    }
+  }
+
+  function animate(timestamp) {
+    if (reducedMotion.matches) {
+      drawNetwork();
+      animationFrame = null;
+      return;
     }
 
-
-
-    /* ================= ANIMATION ================= */
-
-    function animate() {
-
-        drawNetwork();
-
-        requestAnimationFrame(
-            animate
-        );
-
+    // Limit animation to approximately 30 frames per second.
+    if (timestamp - lastFrame < 33) {
+      animationFrame = requestAnimationFrame(animate);
+      return;
     }
 
+    lastFrame = timestamp;
 
+    particles.forEach((particle) => {
+      particle.x += particle.vx;
+      particle.y += particle.vy;
 
-    window.addEventListener(
-        "resize",
-        resizeCanvas
-    );
+      if (particle.x < 0 || particle.x > width) particle.vx *= -1;
+      if (particle.y < 0 || particle.y > height) particle.vy *= -1;
 
+      particle.x = Math.max(0, Math.min(width, particle.x));
+      particle.y = Math.max(0, Math.min(height, particle.y));
+    });
 
-    resizeCanvas();
+    drawNetwork();
+    animationFrame = requestAnimationFrame(animate);
+  }
 
-    animate();
+  function startAnimation() {
+    if (animationFrame !== null) {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = null;
+    }
 
+    if (reducedMotion.matches) {
+      drawNetwork();
+      return;
+    }
+
+    lastFrame = 0;
+    animationFrame = requestAnimationFrame(animate);
+  }
+
+  window.addEventListener("resize", resizeCanvas);
+
+  if (typeof reducedMotion.addEventListener === "function") {
+    reducedMotion.addEventListener("change", startAnimation);
+  }
+
+  resizeCanvas();
+  startAnimation();
 });
