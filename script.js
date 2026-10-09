@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
   const menuToggle = document.getElementById("menu-toggle");
@@ -8,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeIcon = document.querySelector(".theme-toggle-icon");
   const currentYear = document.getElementById("current-year");
 
-  // Keep the footer year current.
+  // Keep footer year current.
   if (currentYear) {
     currentYear.textContent = new Date().getFullYear();
   }
@@ -17,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (menuToggle && navLinks) {
     menuToggle.addEventListener("click", () => {
       const isOpen = navLinks.classList.toggle("is-open");
+
       menuToggle.setAttribute("aria-expanded", String(isOpen));
       menuToggle.setAttribute(
         "aria-label",
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Theme switch: the content remains the same in both themes.
+  // Theme switch.
   function updateThemeButton() {
     if (!themeToggle || !themeLabel || !themeIcon) return;
 
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let lastFrame = 0;
 
   const particleCount = () =>
-    Math.min(65, Math.max(24, Math.floor((width * height) / 24000)));
+    Math.min(85, Math.max(30, Math.floor((width * height) / 20000)));
 
   function resizeCanvas() {
     const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
@@ -113,12 +113,10 @@ document.addEventListener("DOMContentLoaded", () => {
       y: Math.random() * height,
       vx: (Math.random() - 0.5) * 0.25,
       vy: (Math.random() - 0.5) * 0.25,
-      radius: Math.random() * 1.5 + 0.7
+      radius: Math.random() * 1.5 + 1.1
     }));
 
-    if (reducedMotion.matches) {
-      drawNetwork();
-    }
+    drawNetwork();
   }
 
   function getAccentColor() {
@@ -131,8 +129,9 @@ document.addEventListener("DOMContentLoaded", () => {
     context.clearRect(0, 0, width, height);
 
     const color = getAccentColor();
-    const maxDistance = Math.min(145, width * 0.19);
+    const maxDistance = Math.min(170, width * 0.22);
 
+    // Draw brighter connecting lines.
     for (let i = 0; i < particles.length; i++) {
       const particle = particles[i];
 
@@ -143,17 +142,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < maxDistance) {
-          const opacity = (1 - distance / maxDistance) * 0.2;
+          const opacity = (1 - distance / maxDistance) * 0.42;
 
           context.beginPath();
           context.moveTo(particle.x, particle.y);
           context.lineTo(other.x, other.y);
           context.strokeStyle = `rgba(${color}, ${opacity})`;
-          context.lineWidth = 0.8;
+          context.lineWidth = 1.15;
           context.stroke();
         }
       }
 
+      // Draw brighter network nodes.
       context.beginPath();
       context.arc(
         particle.x,
@@ -162,8 +162,14 @@ document.addEventListener("DOMContentLoaded", () => {
         0,
         Math.PI * 2
       );
-      context.fillStyle = `rgba(${color}, 0.55)`;
+
+      context.fillStyle = `rgba(${color}, 0.9)`;
+      context.shadowBlur = 7;
+      context.shadowColor = `rgba(${color}, 0.7)`;
       context.fill();
+
+      // Reset shadow so it does not affect connecting lines.
+      context.shadowBlur = 0;
     }
   }
 
@@ -212,7 +218,10 @@ document.addEventListener("DOMContentLoaded", () => {
     animationFrame = requestAnimationFrame(animate);
   }
 
-  window.addEventListener("resize", resizeCanvas);
+  window.addEventListener("resize", () => {
+    resizeCanvas();
+    startAnimation();
+  });
 
   if (typeof reducedMotion.addEventListener === "function") {
     reducedMotion.addEventListener("change", startAnimation);
@@ -221,3 +230,60 @@ document.addEventListener("DOMContentLoaded", () => {
   resizeCanvas();
   startAnimation();
 });
+2. style.css — background aur caption ka fix
+Apni existing CSS ko delete mat karna. File ke bilkul end mein ye code paste karo.
+
+css
+
+/* ===== CLEARER TECH BACKGROUND ===== */
+
+.tech-background {
+  opacity: 0.32;
+}
+
+.circuit-lines {
+  stroke-width: 2;
+  opacity: 1;
+}
+
+.circuit-nodes {
+  opacity: 1;
+  filter: drop-shadow(0 0 5px var(--accent));
+}
+
+.tech-symbols {
+  opacity: 1;
+  stroke-width: 2.5;
+}
+
+#network-background {
+  opacity: 0.62;
+}
+
+/* ===== PROFILE CAPTION ALIGNMENT ===== */
+
+.profile-caption {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  min-width: 0;
+  padding: 14px 6px 8px;
+  color: var(--muted);
+  font-size: 0.77rem;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.profile-caption-dot {
+  flex: 0 0 8px;
+}
+
+/* Prevent caption text from overflowing on small screens */
+@media (max-width: 480px) {
+  .profile-caption {
+    gap: 7px;
+    padding-inline: 3px;
+    font-size: 0.7rem;
+  }
+}
