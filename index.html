@@ -1,849 +1,562 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-        content="Sonu Singh - IT Engineer, M365 Administrator and CEH v12 Certified professional.">
-
-    <meta name="theme-color" content="#06111f">
-
-    <title>Sonu Singh | IT Engineer | M365 | Cybersecurity</title>
-
-    <link rel="stylesheet" href="style.css?v=5">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#081426">
+  <meta name="description" content="Sonu Singh - IT Engineer specializing in Microsoft 365 administration, Active Directory, desktop support, networking and cybersecurity fundamentals.">
+  <title>Sonu Singh | IT Engineer & M365 Administrator</title>
+  <link rel="icon" href="CEH-logo.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="style.css?v=6">
+  <script src="script.js?v=6" defer></script>
 </head>
 
 <body>
+  <!-- Decorative IT network background -->
+  <div class="tech-background" aria-hidden="true">
+    <svg class="tech-icons" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
+      <g class="circuit-lines" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M0 120 H150 V210 H300 M300 210 V280 H410"/>
+        <path d="M1200 160 H1030 V260 H900 V330 H820"/>
+        <path d="M0 570 H180 V500 H310 V430 H420"/>
+        <path d="M1200 620 H1060 V550 H950 V470 H860"/>
+        <path d="M250 900 V790 H360 V720 H470"/>
+        <path d="M920 0 V110 H820 V190 H750"/>
+        <path d="M500 0 V80 H600 V140"/>
+        <path d="M700 900 V810 H800 V740 H930"/>
+      </g>
+      <g class="circuit-nodes" fill="currentColor">
+        <circle cx="150" cy="120" r="4"/><circle cx="300" cy="210" r="4"/>
+        <circle cx="1030" cy="160" r="4"/><circle cx="900" cy="260" r="4"/>
+        <circle cx="180" cy="570" r="4"/><circle cx="310" cy="500" r="4"/>
+        <circle cx="1060" cy="620" r="4"/><circle cx="950" cy="550" r="4"/>
+        <circle cx="360" cy="790" r="4"/><circle cx="820" cy="110" r="4"/>
+      </g>
+      <g class="tech-symbols" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Monitor -->
+        <g transform="translate(100 300)">
+          <rect x="0" y="0" width="74" height="48" rx="5"/>
+          <path d="M37 48 V61 M20 61 H54"/>
+        </g>
+        <!-- Server -->
+        <g transform="translate(1000 330)">
+          <rect x="0" y="0" width="70" height="86" rx="6"/>
+          <path d="M0 28 H70 M0 57 H70"/>
+          <circle cx="13" cy="14" r="2"/><circle cx="13" cy="43" r="2"/><circle cx="13" cy="72" r="2"/>
+          <path d="M25 14 H56 M25 43 H56 M25 72 H56"/>
+        </g>
+        <!-- Cloud -->
+        <g transform="translate(810 660)">
+          <path d="M17 48 H61 A18 18 0 0 0 61 12 A27 27 0 0 0 10 20 A15 15 0 0 0 17 48 Z"/>
+        </g>
+        <!-- Shield -->
+        <g transform="translate(250 650)">
+          <path d="M35 0 L66 12 V35 C66 57 50 73 35 82 C20 73 4 57 4 35 V12 Z"/>
+          <path d="M21 38 L31 48 L50 27"/>
+        </g>
+        <!-- Router -->
+        <g transform="translate(500 170)">
+          <rect x="0" y="20" width="82" height="36" rx="6"/>
+          <path d="M18 20 V5 M64 20 V5"/>
+          <circle cx="18" cy="39" r="2"/><circle cx="31" cy="39" r="2"/>
+          <path d="M45 39 H67"/>
+        </g>
+        <!-- Database -->
+        <g transform="translate(550 680)">
+          <ellipse cx="36" cy="12" rx="32" ry="11"/>
+          <path d="M4 12 V55 C4 70 68 70 68 55 V12"/>
+          <path d="M4 33 C4 48 68 48 68 33"/>
+        </g>
+      </g>
+    </svg>
+  </div>
 
-    <!-- IT Network Background -->
-    <div id="tech-background" aria-hidden="true">
-        <!-- Icons and network circuit -->
+  <canvas id="network-background" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Sonu Singh home">
+        <img src="CEH-logo.jpg" alt="CEH logo" class="brand-logo">
+        <span>Sonu<span class="accent-text"> Singh</span></span>
+      </a>
+
+      <button class="menu-toggle" id="menu-toggle"
+        aria-label="Open navigation menu" aria-expanded="false"
+        aria-controls="nav-links" type="button">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-links" id="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-resume" href="Sonu-Singh-Resume.pdf" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <p class="eyebrow"><span class="status-dot"></span> IT INFRASTRUCTURE & SUPPORT</p>
+          <h1>Hi, I'm <span class="gradient-text">Sonu Singh</span></h1>
+          <h2>IT Engineer <span class="heading-divider">|</span> M365 Administrator</h2>
+          <p class="hero-description">
+            IT professional with 4+ years of experience in IT infrastructure,
+            Microsoft 365 administration, Active Directory, desktop support
+            and network troubleshooting. CEH v12 certified, with an interest
+            in developing further cybersecurity skills.
+          </p>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <strong>4+</strong>
+              <span>Years Experience</span>
+            </div>
+            <div class="stat-item">
+              <strong>120+</strong>
+              <span>End Users Supported</span>
+            </div>
+            <div class="stat-item">
+              <strong>M365</strong>
+              <span>Administration</span>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#experience">View Experience <span>→</span></a>
+            <a class="btn btn-outline" href="Sonu-Singh-Resume.pdf" target="_blank" rel="noopener noreferrer">View Resume ↗</a>
+          </div>
+
+          <div class="hero-social">
+            <a href="https://www.linkedin.com/in/rbsonu" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <span class="social-separator">•</span>
+            <a href="mailto:sonusingh.tech@outlook.com">Email Me ↗</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="profile-frame">
+            <div class="profile-glow"></div>
+            <img class="profile-photo" src="profile-photo.png" alt="Sonu Singh, IT Engineer">
+            <div class="profile-caption">
+              <span class="profile-caption-dot"></span>
+              IT Engineer · Infrastructure Support
+            </div>
+          </div>
+          <div class="floating-tech floating-tech-one" aria-hidden="true">
+            <span>01</span><strong>IT Support</strong>
+          </div>
+          <div class="floating-tech floating-tech-two" aria-hidden="true">
+            <span>02</span><strong>Microsoft 365</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scrolling quote strip: top -->
+    <div class="quote-strip quote-strip-top" aria-label="Technology interests">
+      <div class="quote-track">
+        <span>Technology • Innovation • IT Infrastructure •</span>
+        <span aria-hidden="true">Technology • Innovation • IT Infrastructure •</span>
+      </div>
     </div>
 
-    <!-- Animated IT Network Background -->
-    <canvas id="network-background" aria-hidden="true"></canvas>
-
-
-    <!-- ================= NAVBAR ================= -->
-
-    <header class="navbar">
-
-        <div class="container nav-container">
-
-            <a href="#home"
-                class="logo ceh-logo"
-                aria-label="Sonu Singh - CEH v12 Certified">
-
-                <img src="CEH-logo.jpg"
-                    alt="CEH v12 Certified Ethical Hacker">
-
-            </a>
-
-            <!-- Mobile Menu -->
-            <button
-                class="menu-toggle"
-                id="menuToggle"
-                aria-label="Open navigation menu"
-                aria-expanded="false"
-                aria-controls="navLinks">
-
-                <span></span>
-                <span></span>
-                <span></span>
-
-            </button>
-
-            <!-- Navigation -->
-            <nav class="nav-links"
-                id="navLinks"
-                aria-label="Primary navigation">
-
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#experience">Experience</a>
-                <a href="#certifications">Certifications</a>
-                <a href="#education">Education</a>
-                <a href="#contact">Contact</a>
-
-                <a href="Sonu-Singh-Resume.pdf"
-                    class="nav-resume"
-                    download>
-                    Resume
-                </a>
-
-            </nav>
-
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">GET TO KNOW ME</p>
+            <h2>About <span class="gradient-text">Me</span></h2>
+          </div>
+          <button class="theme-toggle" id="theme-toggle" type="button"
+            aria-label="Switch to Cybersecurity theme" aria-pressed="false">
+            <span class="theme-toggle-icon" aria-hidden="true">◐</span>
+            <span class="theme-toggle-label">Cybersecurity Theme</span>
+          </button>
         </div>
 
-    </header>
-
-
-    <main>
-
-        <!-- ================= HERO ================= -->
-
-        <section id="home" class="hero">
-
-            <div class="container hero-container">
-
-                <!-- Profile Photo -->
-                <div class="hero-photo-wrap">
-
-                    <div class="hero-photo">
-                        <img
-                            src="profile-photo.png"
-                            alt="Sonu Singh - IT Engineer">
-                    </div>
-
-                    <!-- CEH Badge -->
-                    <div class="hero-badge">
-                        <img
-                            src="CEH-v12-badge.png"
-                            alt="CEH v12 Badge">
-                    </div>
-
-                </div>
-
-                <!-- Hero Content -->
-                <div class="hero-content">
-
-                    <p class="hero-label">
-                        IT ENGINEER • M365 • INFRASTRUCTURE • CYBERSECURITY
-                    </p>
-
-                    <h1>
-                        Hi, I'm <span>Sonu Singh</span>
-                    </h1>
-
-                    <h2>
-                        IT Engineer | M365 Administrator | CEH v12 Certified
-                    </h2>
-
-                    <p class="hero-description">
-                        IT professional with 4+ years of experience in IT
-                        infrastructure, Microsoft 365 administration,
-                        Active Directory, desktop support, networking and
-                        troubleshooting.
-                    </p>
-
-                    <div class="hero-buttons">
-
-                        <a href="#experience" class="btn btn-primary">
-                            View Experience
-                        </a>
-
-                        <a href="#contact" class="btn btn-outline">
-                            Contact Me
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Hero Stats -->
-            <div class="container hero-stats">
-
-                <div>
-                    <strong>4+ Years</strong>
-                    <span>IT Experience</span>
-                </div>
-
-                <div>
-                    <strong>120+</strong>
-                    <span>End Users Supported</span>
-                </div>
-
-                <div>
-                    <strong>CEH v12</strong>
-                    <span>Certified</span>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= ABOUT ================= -->
-
-        <section id="about" class="section">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <span>01</span>
-                    <h2>About Me</h2>
-                </div>
-
-                <div class="about-content">
-
-                    <div class="about-text">
-
-                        <p>
-                            I am an IT Engineer focused on reliable
-                            IT infrastructure, Microsoft 365 administration,
-                            endpoint support and network troubleshooting.
-                        </p>
-
-                        <p>
-                            My experience includes user support,
-                            Active Directory, Microsoft 365, Windows
-                            environments, hardware, printers, LAN/Wi-Fi,
-                            Fortinet and day-to-day IT operations.
-                        </p>
-
-                    </div>
-
-                    <div class="about-highlight">
-
-                        <div class="highlight-box">
-                            <span class="highlight-number">01</span>
-                            <h3>Infrastructure</h3>
-                            <p>
-                                Windows, hardware, LAN/Wi-Fi,
-                                printers and network troubleshooting.
-                            </p>
-                        </div>
-
-                        <div class="highlight-box">
-                            <span class="highlight-number">02</span>
-                            <h3>Microsoft 365</h3>
-                            <p>
-                                User, license, mailbox, MFA,
-                                OneDrive, Teams and admin support.
-                            </p>
-                        </div>
-
-                        <div class="highlight-box">
-                            <span class="highlight-number">03</span>
-                            <h3>Cybersecurity</h3>
-                            <p>
-                                CEH v12 certified with a strong
-                                interest in security and infrastructure.
-                            </p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= SKILLS ================= -->
-
-        <section id="skills" class="section dark-section">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <span>02</span>
-                    <h2>Technical Skills</h2>
-                </div>
-
-                <div class="skills-grid">
-
-                    <article class="skill-card">
-                        <span class="skill-number">01</span>
-                        <h3>Microsoft 365</h3>
-                        <p>
-                            M365 Admin Center, Exchange Online,
-                            Teams, OneDrive, licenses, mailboxes,
-                            groups and MFA.
-                        </p>
-                    </article>
-
-                    <article class="skill-card">
-                        <span class="skill-number">02</span>
-                        <h3>Active Directory</h3>
-                        <p>
-                            User accounts, password resets,
-                            permissions, onboarding, offboarding
-                            and access management.
-                        </p>
-                    </article>
-
-                    <article class="skill-card">
-                        <span class="skill-number">03</span>
-                        <h3>Windows &amp; Desktop</h3>
-                        <p>
-                            Windows 10/11, Outlook, Office,
-                            hardware, software, laptops,
-                            desktops and printers.
-                        </p>
-                    </article>
-
-                    <article class="skill-card">
-                        <span class="skill-number">04</span>
-                        <h3>Networking</h3>
-                        <p>
-                            LAN/WAN, TCP/IP, switches, routers,
-                            access points, Wi-Fi and network
-                            troubleshooting.
-                        </p>
-                    </article>
-
-                    <article class="skill-card">
-                        <span class="skill-number">05</span>
-                        <h3>Fortinet</h3>
-                        <p>
-                            Firewall support, whitelist/blacklist,
-                            bandwidth utilization and connectivity
-                            troubleshooting.
-                        </p>
-                    </article>
-
-                    <article class="skill-card">
-                        <span class="skill-number">06</span>
-                        <h3>IT Operations</h3>
-                        <p>
-                            Asset management, Freshservice,
-                            Samadhan, iSupport, PRTG and
-                            vendor coordination.
-                        </p>
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= EXPERIENCE ================= -->
-
-        <section id="experience" class="section">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <span>03</span>
-                    <h2>Professional Experience</h2>
-                </div>
-
-                <div class="timeline">
-
-                    <!-- Quantum Projectinfra -->
-                    <article class="timeline-item">
-
-                        <span class="timeline-dot"></span>
-
-                        <div class="timeline-content">
-
-                            <span class="timeline-date">
-                                04/2026 – Present
-                            </span>
-
-                            <h3>IT Engineer</h3>
-                            <h4>Quantum Projectinfra Pvt Ltd</h4>
-
-                            <p class="client">
-                                IT Infrastructure &amp; End User Support
-                            </p>
-
-                            <ul>
-                                <li>
-                                    Technical Support &amp; IT Asset Management:
-                                    Provided technical support to 120+ employees,
-                                    ensuring seamless IT operations and maintaining
-                                    an updated IT asset inventory.
-                                </li>
-
-                                <li>
-                                    Microsoft 365 Administration: Administered
-                                    Microsoft 365 Admin Center by managing user
-                                    accounts, license assignment, Exchange Online
-                                    mailboxes, shared mailboxes, distribution
-                                    groups, security groups, MFA configuration,
-                                    and OneDrive access management.
-                                </li>
-
-                                <li>
-                                    Software &amp; Application Support: Assisted
-                                    users with installation, troubleshooting, and
-                                    resolving issues related to Microsoft 365,
-                                    MS Teams, OneDrive, Outlook and work applications.
-                                </li>
-
-                                <li>
-                                    Operating System Management: Installed,
-                                    configured, and troubleshot Windows 10 and
-                                    Windows 11 for optimal user experience and
-                                    system performance.
-                                </li>
-
-                                <li>
-                                    Hardware &amp; Network Setup: Installed,
-                                    configured, and maintained desktops, laptops,
-                                    MacBooks and network infrastructure, ensuring
-                                    smooth connectivity and performance.
-                                </li>
-
-                                <li>
-                                    Printer Management: Installed and maintained
-                                    local and network printers, ensuring uninterrupted
-                                    print services across the organization.
-                                </li>
-
-                                <li>
-                                    Domain Management: Managed domain registration,
-                                    renewal, and transfers.
-                                </li>
-
-                                <li>
-                                    Vendor Coordination: Coordinated with vendors
-                                    for procurement, warranty support, and maintained
-                                    business IT infrastructure.
-                                </li>
-
-                                <li>
-                                    Firewall &amp; Network Security: Managed Fortinet
-                                    firewalls for network security, monitored link
-                                    performance, and resolved issues to ensure uptime.
-                                    Implemented website whitelisting/blacklisting
-                                    policies and optimized bandwidth through detailed
-                                    traffic reports.
-                                </li>
-                            </ul>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- Insight Business Machines -->
-                    <article class="timeline-item">
-
-                        <span class="timeline-dot"></span>
-
-                        <div class="timeline-content">
-
-                            <span class="timeline-date">
-                                06/2025 – 03/2026
-                            </span>
-
-                            <h3>L2 Desktop Support Engineer</h3>
-                            <h4>Insight Business Machines Pvt Ltd</h4>
-
-                            <p class="client">
-                                Client: Quantum Projectinfra Pvt Ltd
-                            </p>
-
-                            <ul>
-                                <li>
-                                    Delivered L2 desktop support for business
-                                    users across multiple client locations.
-                                </li>
-                                <li>
-                                    Managed Microsoft 365, Active Directory,
-                                    Outlook, Teams, and Office applications.
-                                </li>
-                                <li>
-                                    Diagnosed and resolved hardware, software,
-                                    printer, and network connectivity issues.
-                                </li>
-                                <li>
-                                    Installed and configured Windows operating
-                                    systems and enterprise applications.
-                                </li>
-                                <li>
-                                    Maintained IT asset inventory and ensured
-                                    preventive maintenance of IT infrastructure.
-                                </li>
-                                <li>
-                                    Collaborated with internal teams to achieve
-                                    SLA targets and improve user satisfaction.
-                                </li>
-                            </ul>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- Savit Interactive -->
-                    <article class="timeline-item">
-
-                        <span class="timeline-dot"></span>
-
-                        <div class="timeline-content">
-
-                            <span class="timeline-date">
-                                03/2025 – 06/2025
-                            </span>
-
-                            <h3>IT Executive</h3>
-                            <h4>Savit Interactive Pvt Ltd</h4>
-
-                            <ul>
-                                <li>
-                                    Managed Fortinet Firewall policies, website
-                                    filtering, bandwidth monitoring, and network security.
-                                </li>
-                                <li>
-                                    Administered domain registration, DNS,
-                                    web hosting, and web server management.
-                                </li>
-                                <li>
-                                    Provided IT support for 50+ employees,
-                                    ensuring uninterrupted business operations.
-                                </li>
-                                <li>
-                                    Managed Microsoft 365, Outlook, Teams,
-                                    OneDrive, and Office applications.
-                                </li>
-                                <li>
-                                    Installed, configured, and maintained Windows
-                                    systems, printers, and network devices.
-                                </li>
-                                <li>
-                                    Coordinated with vendors for procurement,
-                                    AMC, and issue resolution.
-                                </li>
-                                <li>
-                                    Maintained IT asset inventory and documentation.
-                                </li>
-                            </ul>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- PNB Housing Finance -->
-                    <article class="timeline-item">
-
-                        <span class="timeline-dot"></span>
-
-                        <div class="timeline-content">
-
-                            <span class="timeline-date">
-                                08/2023 – 03/2025
-                            </span>
-
-                            <h3>Zonal IT Executive</h3>
-                            <h4>PNB Housing Finance Ltd</h4>
-
-                            <ul>
-                                <li>
-                                    Provided remote and onsite IT support
-                                    for 20+ branch offices.
-                                </li>
-                                <li>
-                                    Administered Active Directory and
-                                    managed user accounts.
-                                </li>
-                                <li>
-                                    Supported Microsoft 365, Outlook,
-                                    Teams, and Office applications.
-                                </li>
-                                <li>
-                                    Installed and maintained Windows desktops,
-                                    laptops, MacBooks, printers, and network devices.
-                                </li>
-                                <li>
-                                    Resolved incidents using Samadhan and
-                                    iSupport Portal while maintaining SLA.
-                                </li>
-                                <li>
-                                    Managed IT asset allocation, deallocation,
-                                    and monthly inventory reports.
-                                </li>
-                            </ul>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- Taj Wellington Mews -->
-                    <article class="timeline-item">
-
-                        <span class="timeline-dot"></span>
-
-                        <div class="timeline-content">
-
-                            <span class="timeline-date">
-                                10/2022 – 08/2023
-                            </span>
-
-                            <h3>Help Desk Engineer</h3>
-                            <h4>Taj Wellington Mews</h4>
-
-                            <ul>
-                                <li>
-                                    Delivered technical support to hotel
-                                    staff and VIP guests.
-                                </li>
-                                <li>
-                                    Managed user accounts, password resets,
-                                    and access permissions.
-                                </li>
-                                <li>
-                                    Configured wireless access points,
-                                    LAN, WLAN, and network connectivity.
-                                </li>
-                                <li>
-                                    Supported POS systems, KOT printers,
-                                    slip printers, and restaurant applications.
-                                </li>
-                                <li>
-                                    Monitored network performance using
-                                    PRTG Traffic Grapher.
-                                </li>
-                                <li>
-                                    Installed and maintained Windows systems,
-                                    Microsoft Office, antivirus, and printers.
-                                </li>
-                            </ul>
-
-                        </div>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= CERTIFICATIONS ================= -->
-
-        <section id="certifications" class="section dark-section">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <span>04</span>
-                    <h2>Certifications &amp; Achievements</h2>
-                </div>
-
-                <div class="cert-grid">
-
-                    <!-- CEH -->
-                    <article class="cert-card featured-cert">
-
-                        <div class="cert-icon image-icon">
-                            <img
-                                src="CEH-v12-badge.png"
-                                alt="CEH v12 Badge">
-                        </div>
-
-                        <div>
-                            <span class="cert-label">CERTIFIED</span>
-
-                            <h3>Certified Ethical Hacker (CEH v12)</h3>
-
-                            <p>EC-Council</p>
-
-                            <span class="cert-date">October 2025</span>
-                        </div>
-
-                    </article>
-
-
-                    <!-- Digital Forensics Essentials -->
-                    <article class="cert-card">
-
-                        <div class="cert-icon">
-                            <span>DF</span>
-                        </div>
-
-                        <div>
-                            <span class="cert-label">CERTIFICATION</span>
-
-                            <h3>Digital Forensics Essentials</h3>
-
-                            <p>EC-Council</p>
-
-                            <span class="cert-date">October 2023</span>
-                        </div>
-
-                    </article>
-
-
-                    <!-- CCNA -->
-                    <article class="cert-card">
-
-                        <div class="cert-icon">
-                            <span>CC</span>
-                        </div>
-
-                        <div>
-                            <span class="cert-label">TRAINING</span>
-
-                            <h3>CCNA Training</h3>
-
-                            <p>Networking Training</p>
-
-                            <span class="cert-date">September 2022</span>
-                        </div>
-
-                    </article>
-
-
-                    <!-- Achievement -->
-                    <article class="cert-card">
-
-                        <div class="cert-icon">
-                            <span>★</span>
-                        </div>
-
-                        <div>
-                            <span class="cert-label">ACHIEVEMENT</span>
-
-                            <h3>Outstanding Performance</h3>
-
-                            <p>Q1 FY'25</p>
-                        </div>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= EDUCATION ================= -->
-
-        <section id="education" class="section">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <span>05</span>
-                    <h2>Education</h2>
-                </div>
-
-                <div class="education-grid">
-
-                    <article class="education-card">
-
-                        <span class="education-year">2023 – 2025</span>
-
-                        <h3>MSc Information Technology</h3>
-
-                        <p>
-                            William Carey University,
-                            Shillong, Meghalaya
-                        </p>
-
-                    </article>
-
-                    <article class="education-card">
-
-                        <span class="education-year">2018 – 2021</span>
-
-                        <h3>Bachelor of Computer Applications (BCA)</h3>
-
-                        <p>
-                            Patkar College, Goregaon, Mumbai
-                        </p>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= CONTACT ================= -->
-
-        <section id="contact"
-            class="section contact-section dark-section">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <span>06</span>
-                    <h2>Let's Connect</h2>
-                </div>
-
-                <div class="contact-content">
-
-                    <div class="contact-intro">
-
-                        <h3>
-                            Open to IT Infrastructure
-                            &amp; M365 opportunities.
-                        </h3>
-
-                        <p>
-                            Feel free to connect with me for
-                            professional opportunities,
-                            technical discussions or collaboration.
-                        </p>
-
-                    </div>
-
-                    <div class="contact-links">
-
-                        <a href="mailto:sonusingh.tech@outlook.com">
-                            <span>Email</span>
-                            <strong>sonusingh.tech@outlook.com</strong>
-                        </a>
-
-                        <a href="tel:+918080568082">
-                            <span>Phone</span>
-                            <strong>+91 80805 68082</strong>
-                        </a>
-
-                        <a
-                            href="https://www.linkedin.com/in/rbsonu"
-                            target="_blank"
-                            rel="noopener noreferrer">
-
-                            <span>LinkedIn</span>
-                            <strong>linkedin.com/in/rbsonu</strong>
-                        </a>
-
-                        <a href="Sonu-Singh-Resume.pdf" download>
-                            <span>Resume</span>
-                            <strong>Download Resume</strong>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- ================= FOOTER ================= -->
-
-    <footer>
-
-        <div class="container footer-content">
-
+        <div class="about-content">
+          <div class="about-copy">
             <p>
-                © 2026 Sonu Singh. All Rights Reserved.
+              I am an IT Engineer experienced in supporting business users,
+              managing Microsoft 365 services, maintaining Active Directory
+              accounts and resolving desktop, software and network issues.
             </p>
-
             <p>
-                IT Infrastructure • M365 • Networking • Cybersecurity
+              My work includes end-user support, account administration,
+              IT asset tracking, remote troubleshooting, IT documentation
+              and coordination with vendors to help maintain reliable IT
+              operations.
             </p>
+            <p>
+              I hold the Certified Ethical Hacker (CEH v12) certification
+              and am interested in expanding my knowledge of cybersecurity
+              and security best practices.
+            </p>
+          </div>
 
+          <div class="about-highlights">
+            <article class="highlight-card">
+              <span class="highlight-icon" aria-hidden="true">⌘</span>
+              <div><h3>IT Infrastructure</h3><p>Daily IT operations and end-user support</p></div>
+            </article>
+            <article class="highlight-card">
+              <span class="highlight-icon" aria-hidden="true">☁</span>
+              <div><h3>Microsoft 365</h3><p>Accounts, licenses and cloud services</p></div>
+            </article>
+            <article class="highlight-card">
+              <span class="highlight-icon" aria-hidden="true">◇</span>
+              <div><h3>Cybersecurity Interest</h3><p>CEH v12 certified; continuing to learn</p></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">WHAT I WORK WITH</p>
+            <h2>Technical <span class="gradient-text">Skills</span></h2>
+          </div>
+          <p class="section-intro">Tools and technologies used across IT support and infrastructure.</p>
         </div>
 
-    </footer>
+        <div class="skills-grid">
+          <article class="skill-card">
+            <div class="skill-card-heading"><span class="skill-icon">01</span><h3>Microsoft 365 Administration</h3></div>
+            <div class="skill-tags">
+              <span>Microsoft 365 Admin Center</span><span>Exchange Online</span>
+              <span>User & License Management</span><span>Shared Mailboxes</span>
+              <span>Distribution & Security Groups</span><span>MFA</span>
+              <span>OneDrive</span><span>Microsoft Teams</span>
+            </div>
+          </article>
 
+          <article class="skill-card">
+            <div class="skill-card-heading"><span class="skill-icon">02</span><h3>Active Directory & User Management</h3></div>
+            <div class="skill-tags">
+              <span>Active Directory</span><span>User Account Administration</span>
+              <span>Password Resets</span><span>Access Permissions</span>
+              <span>Onboarding & Offboarding</span><span>Domain Support</span>
+            </div>
+          </article>
 
-    <!-- JavaScript -->
-    <script src="script.js?v=5"></script>
+          <article class="skill-card">
+            <div class="skill-card-heading"><span class="skill-icon">03</span><h3>Desktop & Windows Support</h3></div>
+            <div class="skill-tags">
+              <span>Windows 10/11</span><span>Basic macOS</span>
+              <span>Desktop & Laptop Troubleshooting</span><span>Software Installation</span>
+              <span>Outlook Support</span><span>Printer Support</span>
+              <span>Hardware Troubleshooting</span>
+            </div>
+          </article>
 
+          <article class="skill-card">
+            <div class="skill-card-heading"><span class="skill-icon">04</span><h3>Remote Support & Endpoint Management</h3></div>
+            <div class="skill-tags">
+              <span>Remote Desktop Protocol (RDP)</span><span>Windows Quick Assist</span>
+              <span>Microsoft Teams</span><span>AnyDesk</span>
+              <span>UltraViewer</span><span>ManageEngine Endpoint Central</span>
+              <span>TightVNC</span>
+            </div>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-card-heading"><span class="skill-icon">05</span><h3>Networking & Troubleshooting</h3></div>
+            <div class="skill-tags">
+              <span>LAN/WAN</span><span>TCP/IP</span><span>DNS</span>
+              <span>DHCP</span><span>Wi-Fi</span><span>Switches & Routers</span>
+              <span>Wireless Access Points</span><span>Network Troubleshooting</span>
+            </div>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-card-heading"><span class="skill-icon">06</span><h3>Firewall & Network Security</h3></div>
+            <div class="skill-tags">
+              <span>Fortinet Firewall</span><span>Web Filtering</span>
+              <span>Whitelist / Blacklist</span><span>Bandwidth Monitoring</span>
+              <span>Firewall Connectivity Support</span><span>Security Fundamentals</span>
+            </div>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-card-heading"><span class="skill-icon">07</span><h3>IT Asset & Documentation Management</h3></div>
+            <div class="skill-tags">
+              <span>IT Inventory Management</span><span>IT Asset Tracking</span>
+              <span>IT Documentation</span><span>Asset Records</span>
+              <span>Inventory Updates</span><span>Hardware Allocation Tracking</span>
+            </div>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-card-heading"><span class="skill-icon">08</span><h3>ITSM & Ticket Management</h3></div>
+            <div class="skill-tags">
+              <span>Freshservice</span><span>Samadhan</span>
+              <span>iSupport Portal</span><span>Incident Management</span>
+              <span>Service Requests</span><span>Ticket Documentation</span>
+            </div>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-card-heading"><span class="skill-icon">09</span><h3>Network Monitoring</h3></div>
+            <div class="skill-tags">
+              <span>PRTG Network Monitor</span><span>Traffic Monitoring</span>
+              <span>Bandwidth Utilization</span><span>Connectivity Checks</span>
+            </div>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-card-heading"><span class="skill-icon">10</span><h3>Cybersecurity Fundamentals</h3></div>
+            <div class="skill-tags">
+              <span>CEH v12 Certified</span><span>Security Awareness</span>
+              <span>Ethical Hacking Fundamentals</span><span>Digital Forensics Essentials</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">MY PROFESSIONAL JOURNEY</p>
+            <h2>Work <span class="gradient-text">Experience</span></h2>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="experience-card">
+              <div class="experience-top">
+                <div class="company-brand">
+                  <img src="quantum-logo.png" alt="Quantum Projectinfra logo" class="company-logo" onerror="this.style.display='none'">
+                  <div><h3>IT Engineer</h3><h4>Quantum Projectinfra Pvt Ltd</h4></div>
+                </div>
+                <span class="date-pill">04/2026 – Present</span>
+              </div>
+              <p class="experience-type">IT Infrastructure & End-User Support</p>
+              <ul>
+                <li>Provide L1/L2 technical support to 120+ end users across desktop, laptop, software and connectivity issues.</li>
+                <li>Administer Microsoft 365 user accounts, licenses, mailboxes, groups, MFA and OneDrive access.</li>
+                <li>Manage Active Directory user accounts, password resets, access permissions and onboarding/offboarding tasks.</li>
+                <li>Troubleshoot LAN, Wi-Fi, printers, switches, routers and Fortinet firewall connectivity issues.</li>
+                <li>Maintain IT inventory and documentation, monitor network performance and coordinate with vendors when required.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="experience-card">
+              <div class="experience-top">
+                <div class="company-brand">
+                  <img src="insight-logo.png" alt="Insight Business Machines logo" class="company-logo" onerror="this.style.display='none'">
+                  <div><h3>L2 Desktop Support Engineer</h3><h4>Insight Business Machines Pvt Ltd</h4></div>
+                </div>
+                <span class="date-pill">06/2025 – 03/2026</span>
+              </div>
+              <p class="experience-type">Client: Quantum Projectinfra Pvt Ltd</p>
+              <ul>
+                <li>Delivered L2 desktop support and resolved hardware, operating system, application and user-access issues.</li>
+                <li>Supported Microsoft 365, Outlook, Teams, OneDrive, Active Directory and Windows endpoints.</li>
+                <li>Performed network and printer troubleshooting and escalated complex issues to the relevant teams.</li>
+                <li>Assisted with IT asset tracking, incident updates and service request documentation.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="experience-card">
+              <div class="experience-top">
+                <div class="company-brand">
+                  <img src="savit-logo.png" alt="Savit Interactive logo" class="company-logo" onerror="this.style.display='none'">
+                  <div><h3>IT Executive</h3><h4>Savit Interactive Pvt Ltd</h4></div>
+                </div>
+                <span class="date-pill">03/2025 – 06/2025</span>
+              </div>
+              <ul>
+                <li>Provided technical support to 50+ employees for desktop, laptop, software and connectivity issues.</li>
+                <li>Managed IT inventory, hardware allocation records and routine IT documentation.</li>
+                <li>Supported user access, email applications, printers and general office IT operations.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="experience-card">
+              <div class="experience-top">
+                <div class="company-brand">
+                  <img src="pnb-housing-logo.png" alt="PNB Housing Finance logo" class="company-logo" onerror="this.style.display='none'">
+                  <div><h3>Zonal IT Executive</h3><h4>PNB Housing Finance Ltd</h4></div>
+                </div>
+                <span class="date-pill">08/2023 – 03/2025</span>
+              </div>
+              <ul>
+                <li>Supported end users and branch IT operations, including desktops, laptops, printers and business applications.</li>
+                <li>Troubleshot LAN, internet and endpoint issues and coordinated escalations as required.</li>
+                <li>Assisted with IT asset records, user requests and documentation.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="experience-card">
+              <div class="experience-top">
+                <div class="company-brand">
+                  <img src="taj-logo.png" alt="Taj Wellington Mews logo" class="company-logo" onerror="this.style.display='none'">
+                  <div><h3>Help Desk Engineer</h3><h4>Taj Wellington Mews</h4></div>
+                </div>
+                <span class="date-pill">10/2022 – 08/2023</span>
+              </div>
+              <ul>
+                <li>Provided help desk support for end-user hardware, software, login and connectivity issues.</li>
+                <li>Assisted with workstation setup, printer troubleshooting and routine IT support requests.</li>
+                <li>Recorded issues and coordinated with relevant teams to restore services.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scrolling quote strip: middle -->
+    <div class="quote-strip quote-strip-middle" aria-label="Cybersecurity reminder">
+      <div class="quote-track">
+        <span>Secure. Support. Solve. •</span>
+        <span aria-hidden="true">Secure. Support. Solve. •</span>
+      </div>
+    </div>
+
+    <section class="section section-alt" id="certifications">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">LEARNING & ACHIEVEMENTS</p>
+            <h2>Certifications & <span class="gradient-text">Awards</span></h2>
+          </div>
+        </div>
+
+        <div class="certifications-grid">
+          <article class="cert-card featured-cert">
+            <div class="cert-logo-wrap">
+              <img src="CEH-v12-badge.png" alt="Certified Ethical Hacker v12 badge" class="cert-logo" onerror="this.style.display='none'">
+            </div>
+            <span class="cert-status">Certified</span>
+            <h3>Certified Ethical Hacker (CEH v12)</h3>
+            <p class="cert-issuer">EC-Council</p>
+            <p class="cert-date">October 2025</p>
+            <a class="btn btn-primary cert-verify"
+              href="https://aspen.eccouncil.org/VerifyBadge?type=certification&amp;a=yIKttd2S/5/gL5KMz9xZCHAOJhBoAiF1Z6OyAKPW8a4="
+              target="_blank" rel="noopener noreferrer">Verify Certificate ↗</a>
+          </article>
+
+          <article class="cert-card">
+            <div class="cert-logo-wrap">
+              <img src="digital-forensics.png" alt="Digital Forensics Essentials badge" class="cert-logo" onerror="this.style.display='none'">
+            </div>
+            <span class="cert-status">Completed</span>
+            <h3>Digital Forensics Essentials</h3>
+            <p class="cert-issuer">EC-Council</p>
+            <p class="cert-date">October 2023</p>
+          </article>
+
+          <article class="cert-card">
+            <div class="cert-logo-wrap">
+              <img src="ccna-training.png" alt="CCNA training logo" class="cert-logo" onerror="this.style.display='none'">
+            </div>
+            <span class="cert-status">Training Completed</span>
+            <h3>CCNA Training</h3>
+            <p class="cert-issuer">RST Dadar East</p>
+            <p class="cert-date">September 2022</p>
+          </article>
+
+          <article class="cert-card">
+            <div class="cert-logo-wrap">
+              <img src="best-performance.png" alt="Outstanding Performance award" class="cert-logo" onerror="this.style.display='none'">
+            </div>
+            <span class="cert-status">Recognition</span>
+            <h3>Outstanding Performance</h3>
+            <p class="cert-issuer">Quarterly Recognition</p>
+            <p class="cert-date">Q1 FY’25</p>
+          </article>
+        </div>
+        <p class="section-note">CCNA is listed as training completed, not as a passed certification exam.</p>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">ACADEMIC BACKGROUND</p>
+            <h2>Education</h2>
+          </div>
+        </div>
+
+        <div class="education-grid">
+          <article class="education-card">
+            <img src="william-carey-logo.png" alt="William Carey University logo" class="education-logo" onerror="this.style.display='none'">
+            <div>
+              <span class="education-date">2023 – 2025</span>
+              <h3>Master of Science in Information Technology</h3>
+              <p>William Carey University, Shillong</p>
+            </div>
+          </article>
+          <article class="education-card">
+            <img src="patkar-college-logo.png" alt="Patkar College logo" class="education-logo" onerror="this.style.display='none'">
+            <div>
+              <span class="education-date">2018 – 2021</span>
+              <h3>Bachelor of Computer Applications (BCA)</h3>
+              <p>Patkar College, Goregaon, Mumbai</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section section-alt" id="contact">
+      <div class="container">
+        <div class="contact-card">
+          <p class="eyebrow">LET'S CONNECT</p>
+          <h2>Let's Talk <span class="gradient-text">IT</span></h2>
+          <p>Open to connecting with IT professionals and exploring opportunities in IT infrastructure, desktop support and Microsoft 365 administration.</p>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="mailto:sonusingh.tech@outlook.com">Email Me ↗</a>
+            <a class="btn btn-outline" href="https://www.linkedin.com/in/rbsonu" target="_blank" rel="noopener noreferrer">Connect on LinkedIn ↗</a>
+          </div>
+          <p class="contact-email">sonusingh.tech@outlook.com</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scrolling quote strip: bottom -->
+    <div class="quote-strip quote-strip-bottom" aria-label="Learning motivation">
+      <div class="quote-track">
+        <span>Keep Learning. Keep Growing. •</span>
+        <span aria-hidden="true">Keep Learning. Keep Growing. •</span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <a class="footer-brand" href="#home">Sonu<span class="accent-text"> Singh</span></a>
+      <p>IT Engineer · M365 Administration · IT Infrastructure</p>
+      <p class="footer-copy">© <span id="current-year">2026</span> Sonu Singh. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
